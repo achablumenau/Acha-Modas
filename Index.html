@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acha Blumenau | Guia de Moda e Lojas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+    body {
+        font-family: 'Inter', sans-serif;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .card-transition {
+        transition: all 0.2s ease-in-out;
+    }
+    .card-transition:hover {
+        transform: translateY(-2px);
+    }
+    .card-transition:active {
+        transform: scale(0.98);
+    }
+    .foto-roupa {
+        aspect-ratio: 3 / 4;
+    }
+    #menu-lateral {
+        transition: transform 0.3s ease-in-out;
+    }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between selection:bg-emerald-500 selection:text-white">
+
+    <!-- TOAST DE NOTIFICAÇÃO -->
+    <div id="toast" class="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 hidden bg-slate-900 text-white text-xs font-semibold px-4 py-3 rounded-2xl shadow-xl flex items-center gap-2 transition-all">
+        <i class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span id="toast-msg">Ação realizada com sucesso!</span>
+    </div>
+
+    <!-- MENU LATERAL UNIFICADO -->
+    <div id="overlay-menu" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden transition-opacity" onclick="fecharMenuLateral()"></div>
+    <div id="menu-lateral" class="fixed top-0 left-0 bottom-0 z-50 w-80 max-w-[85vw] bg-slate-950 text-white shadow-2xl -translate-x-full flex flex-col justify-between">
+        <div>
+            <div class="p-5 border-b border-slate-800/80 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <span class="font-extrabold tracking-wider text-xs">MENU</span>
+                </div>
+                <button onclick="fecharMenuLateral()" class="w-8 h-8 rounded-full bg-slate-900 hover:bg-slate-800 text-slate-300 flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark text-sm"></i>
+                </button>
+            </div>
+
+            <div class="p-4 space-y-1">
+                <button onclick="selecionarCategoriaMenu('todas')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 font-bold text-sm flex items-center justify-between transition text-white">
+                    <span>TODOS OS PRODUTOS</span>
+                    <i class="fa-solid fa-arrow-right text-xs text-slate-500"></i>
+                </button>
+                <button onclick="selecionarCategoriaMenu('Camisetas')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 font-semibold text-sm flex items-center justify-between transition text-slate-300">
+                    <span>CAMISAS & CAMISETAS</span>
+                    <i class="fa-solid fa-arrow-right text-xs text-slate-500"></i>
+                </button>
+                <button onclick="selecionarCategoriaMenu('Moletons')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 font-semibold text-sm flex items-center justify-between transition text-slate-300">
+                    <span>MOLETONS & JAQUETAS</span>
+                    <i class="fa-solid fa-arrow-right text-xs text-slate-500"></i>
+                </button>
+                <button onclick="selecionarCategoriaMenu('Tênis')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 font-semibold text-sm flex items-center justify-between transition text-slate-300">
+                    <span>TÊNIS & CALÇADOS</span>
+                    <i class="fa-solid fa-arrow-right text-xs text-slate-500"></i>
+                </button>
+                <button onclick="selecionarCategoriaMenu('Calças')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 font-semibold text-sm flex items-center justify-between transition text-slate-300">
+                    <span>CALÇAS & BERMUDAS</span>
+                    <i class="fa-solid fa-arrow-right text-xs text-slate-500"></i>
+                </button>
+
+                <div class="pt-4 pb-2">
+                    <div class="border-t border-slate-800/80 mx-2"></div>
+                </div>
+
+                <button onclick="fecharMenuLateral(); irParaLoginLojista();" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 font-semibold text-sm flex items-center justify-between transition text-slate-300">
+                    <span></i> ÁREA DO LOJISTA</span>
+                    <i class="fa-solid fa-arrow-right text-xs text-slate-500"></i>
+                </button>
+                <button onclick="fecharMenuLateral(); abrirModalClube();" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 font-semibold text-sm flex items-center justify-between transition text-slate-300">
+                    <span></i> CADASTRAR MINHA LOJA</span>
+                    <i class="fa-solid fa-arrow-right text-xs text-slate-500"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="p-4 border-t border-slate-900 text-center">
+            <span class="text-[11px] text-slate-500">Acha Blumenau © 2026</span>
+        </div>
+    </div>
+
+    <!-- MODAL DO CLUBE ACHA -->
+    <div id="modal-clube-acha" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl relative my-auto">
+            <button onclick="fecharModalClube()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+
+            <div class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white p-6 sm:p-8 text-center relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
+                <span class="inline-block bg-emerald-400 text-slate-950 font-extrabold text-[10px] uppercase tracking-wider px-3 py-1 rounded-full mb-3 shadow-sm">
+                    Exclusivo para Lojistas de Blumenau
+                </span>
+                <h2 class="text-xl sm:text-2xl font-extrabold tracking-tight">Seja Parceiro do <span class="text-emerald-400">Clube Acha</span></h2>
+                <p class="text-blue-100 text-xs sm:text-sm mt-1 max-w-md mx-auto">
+                    Coloque sua loja no guia definitivo de moda da cidade e receba clientes prontos para comprar direto no seu WhatsApp.
+                </p>
+            </div>
+
+            <div class="p-6 sm:p-8 space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2">
+                        <div class="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <h4 class="font-extrabold text-slate-900 text-sm">Leads Diretos no WhatsApp</h4>
+                        <p class="text-slate-600">Clientes da cidade chamam com a foto da peça e o tamanho já definidos, sem perguntas vazias.</p>
+                    </div>
+
+                    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2">
+                        <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h4 class="font-extrabold text-slate-900 text-sm">Painel de Métricas Real</h4>
+                        <p class="text-slate-600">Monitore quantas visualizações seu catálogo teve e quantos cliques em compras foram gerados.</p>
+                    </div>
+
+                    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2">
+                        <div class="w-8 h-8 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-link"></i>
+                        </div>
+                        <h4 class="font-extrabold text-slate-900 text-sm">Link na Bio Exclusivo</h4>
+                        <p class="text-slate-600">Sua página própria para usar no Instagram da loja com horário, mapa e vitrine atualizada.</p>
+                    </div>
+
+                    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2">
+                        <div class="w-8 h-8 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <h4 class="font-extrabold text-slate-900 text-sm">Selo Loja Destaque Ouro</h4>
+                        <p class="text-slate-600">Prioridade de exibição nas buscas por bairro e na vitrine geral.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-emerald-50 to-teal-50 border-2 border-emerald-500/40 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div>
+                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700 bg-emerald-200/60 px-2.5 py-1 rounded-md">Plano Fundador Blumenau</span>
+                        <div class="flex items-baseline gap-1 mt-2">
+                            <span class="text-2xl sm:text-3xl font-extrabold text-slate-900">R$ 69,90</span>
+                            <span class="text-xs text-slate-500 font-semibold">/ mês (Cancele quando quiser)</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mt-1">Menos que o custo de um anúncio que não converte.</p>
+                    </div>
+
+                    <a href="https://wa.me/554797735889?text=Olá!%20Quero%20entrar%20no%20Clube%20Acha%20com%20minha%20loja%20em%20Blumenau!" target="_blank" onclick="fecharModalClube()" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs py-3 px-6 rounded-xl shadow-lg transition flex items-center justify-center gap-2 shrink-0">
+                        <i class="fa-brands fa-whatsapp text-base"></i> Assinar Clube Acha
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE DETALHES DO PRODUTO -->
+    <div id="modal-produto" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl relative">
+            <button onclick="fecharModalProduto()" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-black/50 hover:bg-black/70 text-white flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+            <div class="w-full h-72 sm:h-80 bg-slate-100 relative">
+                <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
+                <span id="modal-cat" class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-md"></span>
+            </div>
+            <div class="p-5 space-y-4">
+                <div>
+                    <div class="text-xs font-bold text-blue-600 mb-1 flex items-center justify-between">
+                        <span class="flex items-center gap-1"><i class="fa-solid fa-store"></i> <span id="modal-loja-nome">Loja</span> • <span id="modal-bairro" class="text-slate-500">Bairro</span></span>
+                        <button onclick="compartilharProdutoAtual()" class="text-slate-500 hover:text-blue-600 font-semibold flex items-center gap-1 text-[11px] bg-slate-100 px-2.5 py-1 rounded-lg transition">
+                            <i class="fa-solid fa-share-nodes"></i> Compartilhar
+                        </button>
+                    </div>
+                    <h3 id="modal-nome" class="text-base sm:text-lg font-extrabold text-slate-900 leading-snug">Nome da Peça</h3>
+                    <p id="modal-preco" class="text-xl font-extrabold text-emerald-600 mt-1">R$ 0,00</p>
+                </div>
+
+                <div>
+                    <span class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">Tamanhos Disponíveis:</span>
+                    <div id="modal-tamanhos" class="flex gap-1.5 flex-wrap"></div>
+                </div>
+
+                <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-3 text-xs text-emerald-800 flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-xl bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-sm">
+                        <i class="fa-solid fa-bolt text-sm"></i>
+                    </div>
+                    <div>
+                        <strong class="block font-bold">Disponível em Blumenau</strong>
+                        <span class="text-[11px] text-emerald-700">Retirada na loja física ou consulte a entrega disponível para o seu bairro.</span>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 rounded-2xl p-3 border border-slate-100 text-xs text-slate-600 leading-relaxed flex items-center justify-between gap-2">
+                    <p> </strong> Peça original conferida na loja física.</p>
+                    <a id="modal-btn-maps" href="#" target="_blank" class="bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold px-3 py-2 rounded-xl text-xs flex items-center gap-1.5 shrink-0 transition border border-blue-200">
+                        <i class="fa-solid fa-map-location-dot text-blue-600"></i> Ver no Mapa
+                    </a>
+                </div>
+
+                <a id="modal-btn-whats" onclick="registrarCliqueWhatsModal()" href="#" target="_blank" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-4 rounded-xl text-sm flex items-center justify-center gap-2 transition shadow-md">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Pedir pelo WhatsApp com o Lojista
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CABEÇALHO OFICIAL ACHA BLUMENAU -->
+    <header id="site-header" class="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 text-white pt-6 pb-6 px-3 shadow-md relative">
+        <div class="max-w-4xl mx-auto flex items-center justify-between mb-3 px-1">
+            <button onclick="abrirMenuLateral()" class="w-10 h-10 rounded-xl bg-blue-800/60 hover:bg-blue-800 text-white border border-blue-400/30 flex items-center justify-center transition backdrop-blur-sm">
+                <i class="fa-solid fa-bars text-base"></i>
+            </button>
+
+            <div class="inline-flex items-center gap-2 bg-blue-800/40 px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm border border-blue-400/30">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                Guia de Lojas e Moda de Blumenau - SC
+            </div>
+            
+            <div class="w-10"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-2xl md:text-4xl font-extrabold tracking-tight">
+                <i class="fa-solid font-bold fa-location-dot text-emerald-400 mr-1.5"></i>
+                <span class="text-white">Acha</span><span class="text-emerald-400">Blumenau</span>
+            </h1>
+            <p class="text-blue-100 text-xs md:text-base mt-1 font-medium max-w-md mx-auto">
+                Encontre roupas, calçados e acessórios nas melhores lojas de Blumenau direto no WhatsApp.
+            </p>
+        </div>
+
+        <!-- ABAS PRINCIPAIS -->
+        <div class="max-w-4xl mx-auto mt-5 flex items-center justify-center gap-2 py-1 px-1">
+            <button onclick="mudarAbaPublica('vitrine')" id="tab-vitrine" class="bg-white text-blue-900 font-bold px-4 py-2 rounded-xl text-xs shadow-md transition-all flex items-center gap-1.5 shrink-0 whitespace-nowrap">
+                <i class="fa-solid fa-store"></i> Vitrine
+            </button>
+            <button onclick="mudarAbaPublica('favoritos')" id="tab-favoritos" class="bg-blue-800/60 hover:bg-blue-800 text-white font-semibold px-4 py-2 rounded-xl text-xs transition-all flex items-center gap-1.5 border border-blue-400/30 shrink-0 whitespace-nowrap">
+                <i class="fa-solid fa-heart"></i> Favoritos <span id="fav-count-badge" class="bg-red-500 text-white text-[10px] px-1.5 py-0.2 rounded-full ml-0.5 hidden">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- TELA DE LOGIN DO LOJISTA -->
+    <div id="tela-login-lojista" class="hidden max-w-md mx-auto w-full px-4 py-12 flex-grow flex items-center justify-center">
+        <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xl w-full relative">
+            <button onclick="voltarParaSitePublico()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2">
+                <i class="fa-solid fa-xmark text-base"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-700 font-bold flex items-center justify-center mx-auto mb-3 text-lg">
+                    <i class="fa-solid fa-store"></i>
+                </div>
+                <h2 class="text-xl font-extrabold text-slate-900">Portal do Lojista</h2>
+                <p class="text-xs text-slate-500 mt-1">Entre com seu e-mail e senha autorizados do Clube Acha.</p>
+            </div>
+
+            <form onsubmit="realizarLoginLojista(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">E-mail de Acesso</label>
+                    <input type="email" id="loginEmail" required placeholder="seuemail@loja.com" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-blue-600">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Senha</label>
+                    <input type="password" id="loginSenha" required placeholder="••••••••" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-xs focus:outline-none focus:ring-2 focus:ring-blue-600">
+                </div>
+
+                <button type="submit" id="btn-login-submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs py-3 rounded-xl shadow-md transition flex items-center justify-center gap-1.5 mt-2">
+                    <i class="fa-solid fa-right-to-bracket"></i> Acessar Painel da Loja
+                </button>
+            </form>
+
+            <div class="mt-6 pt-4 border-t border-slate-100 text-center">
+                <p class="text-[11px] text-slate-500">Ainda não faz parte do Clube Acha?</p>
+                <button onclick="voltarParaSitePublico(); abrirModalClube();" class="text-xs font-bold text-emerald-600 hover:text-emerald-700 mt-1 inline-block">
+                    Conhecer o plano por R$ 69,90/mês →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAINEL DO LOJISTA -->
+    <div id="tela-painel-lojista" class="hidden max-w-4xl mx-auto w-full px-2 sm:px-4 py-6 flex-grow space-y-4">
+        <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white rounded-2xl p-5 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <img id="admin-loja-logo" src="https://i.imgur.com/pSSEhWE.jpeg" class="w-12 h-12 rounded-xl object-cover bg-white border border-slate-700 shadow-sm">
+                <div>
+                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded-md border border-emerald-800">Painel Nuvem Ativo</span>
+                    <h2 id="admin-loja-nome" class="text-base sm:text-lg font-extrabold text-white mt-0.5">Carregando Loja...</h2>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="copiarLinkMinhaLoja()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition flex items-center gap-1.5 shadow-sm">
+                    <i class="fa-solid fa-link"></i> Copiar Link da Minha Loja
+                </button>
+                <button onclick="sairDoPainelLojista()" class="bg-white/10 hover:bg-white/20 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition flex items-center gap-1.5 border border-white/10">
+                    <i class="fa-solid fa-right-from-bracket"></i> Sair
+                </button>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-2 border-b border-slate-200 pb-2">
+            <button onclick="mudarAbaAdmin('produtos')" id="admin-tab-produtos" class="bg-blue-600 text-white font-bold px-4 py-2 rounded-xl text-xs shadow-sm transition flex items-center gap-1.5">
+                <i class="fa-solid fa-shirt"></i> Catálogo de Peças
+            </button>
+            <button onclick="mudarAbaAdmin('config')" id="admin-tab-config" class="bg-white hover:bg-slate-100 text-slate-700 font-bold px-4 py-2 rounded-xl text-xs border border-slate-200 transition flex items-center gap-1.5">
+                <i class="fa-solid fa-gear"></i> Configurações da Loja
+            </button>
+        </div>
+
+        <div id="admin-secao-produtos" class="space-y-4">
+            <div class="grid grid-cols-3 gap-2 sm:gap-4">
+                <div class="bg-white rounded-2xl border border-slate-200 p-3 sm:p-4 shadow-sm flex flex-col items-center text-center justify-between">
+                    <div class="flex items-center justify-center gap-1.5 text-blue-600 text-[11px] sm:text-xs font-bold mb-1 w-full">
+                        <i class="fa-solid fa-eye shrink-0"></i> <span class="truncate">Visualizações</span>
+                    </div>
+                    <p id="stat-total-views" class="text-xl sm:text-2xl font-extrabold text-slate-900 my-1">0</p>
+                    <span class="text-[9px] sm:text-[10px] text-slate-400 leading-tight">Aberturas de detalhes</span>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-slate-200 p-3 sm:p-4 shadow-sm flex flex-col items-center text-center justify-between">
+                    <div class="flex items-center justify-center gap-1.5 text-emerald-600 text-[11px] sm:text-xs font-bold mb-1 w-full">
+                        <i class="fa-brands fa-whatsapp shrink-0"></i> <span class="truncate">Cliques Whats</span>
+                    </div>
+                    <p id="stat-total-whats" class="text-xl sm:text-2xl font-extrabold text-slate-900 my-1">0</p>
+                    <span class="text-[9px] sm:text-[10px] text-slate-400 leading-tight">Leads interessados</span>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-slate-200 p-3 sm:p-4 shadow-sm flex flex-col items-center text-center justify-between">
+                    <div class="flex items-center justify-center gap-1.5 text-red-500 text-[11px] sm:text-xs font-bold mb-1 w-full">
+                        <i class="fa-solid fa-heart shrink-0"></i> <span class="truncate">Favoritadas</span>
+                    </div>
+                    <p id="stat-total-favs" class="text-xl sm:text-2xl font-extrabold text-slate-900 my-1">0</p>
+                    <span class="text-[9px] sm:text-[10px] text-slate-400 leading-tight">Salvas na lista</span>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="text-xs uppercase font-extrabold text-slate-500 flex items-center gap-1.5">
+                        <i class="fa-solid fa-chart-simple text-blue-600"></i> Desempenho e Gestão por Peça
+                    </h3>
+                </div>
+                <div id="adminProductList" class="divide-y divide-slate-100"></div>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
+                    <div>
+                        <span id="form-badge" class="text-[11px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-md">Novo Produto</span>
+                        <h2 id="form-titulo" class="text-base md:text-lg font-extrabold text-slate-900 mt-1">Cadastrar Nova Peça no Catálogo</h2>
+                        <p class="text-xs text-slate-500">O que você publicar aqui salva no banco de dados e aparece para todos os clientes.</p>
+                    </div>
+                    <div class="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 shrink-0">
+                        <i class="fa-solid fa-shirt text-sm"></i>
+                    </div>
+                </div>
+
+                <form id="addProductForm" onsubmit="handleAddProduct(event)" class="space-y-4">
+                    <input type="hidden" id="editProductId" value="">
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Nome da Peça *</label>
+                            <input type="text" id="prodName" required placeholder="Ex: Conjunto Moletom Black" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-blue-600">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Preço (R$) *</label>
+                            <input type="text" id="prodPrice" required placeholder="Ex: 199,90" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-blue-600">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Categoria *</label>
+                            <select id="prodCategory" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-blue-600">
+                                <option value="Moletons">Moletons</option>
+                                <option value="Camisetas">Camisetas</option>
+                                <option value="Tênis">Tênis</option>
+                                <option value="Calças">Calças</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Tamanhos Disponíveis *</label>
+                            <input type="text" id="prodSizesInput" required placeholder="Ex: P, M, G ou 38, 39, 40" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-blue-600">
+                            <span class="text-[10px] text-slate-400 mt-1 block">Separe os tamanhos ou numerações por vírgula.</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1.5">Foto do Produto (Escolha do celular, modelo rápido ou link):</label>
+                        <input type="file" id="prodImageFile" accept="image/*" onchange="converterProdutoArquivo(event)" class="w-full text-xs text-slate-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 border border-slate-300 rounded-xl cursor-pointer mb-2">
+                        
+                        <input type="text" id="prodImageUrlInput" oninput="document.getElementById('prodImage').value = this.value" placeholder="Ou cole o link da foto (https://...)" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs mb-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                        
+                        <div class="grid grid-cols-4 gap-2 mb-2">
+                            <button type="button" onclick="selectPresetImage('https://plus.unsplash.com/premium_photo-1673125287084-e90996bad505?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D', 'Moletons', this)" class="preset-img-btn ring-2 ring-blue-600 rounded-xl overflow-hidden aspect-square relative shadow-sm">
+                                <img src="https://plus.unsplash.com/premium_photo-1673125287084-e90996bad505?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D" class="w-full h-full object-cover">
+                                <span class="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[10px] py-0.5 text-center font-semibold">Moletom</span>
+                            </button>
+                            <button type="button" onclick="selectPresetImage('https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=500&auto=format&fit=crop', 'Tênis', this)" class="preset-img-btn opacity-75 hover:opacity-100 rounded-xl overflow-hidden aspect-square relative shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=200&auto=format&fit=crop" class="w-full h-full object-cover">
+                                <span class="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[10px] py-0.5 text-center font-semibold">Tênis</span>
+                            </button>
+                            <button type="button" onclick="selectPresetImage('https://images.unsplash.com/photo-1772549145407-dd62ea2ba581?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D', 'Camisetas', this)" class="preset-img-btn opacity-75 hover:opacity-100 rounded-xl overflow-hidden aspect-square relative shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1772549145407-dd62ea2ba581?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D" class="w-full h-full object-cover">
+                                <span class="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[10px] py-0.5 text-center font-semibold">Camiseta</span>
+                            </button>
+                            <button type="button" onclick="selectPresetImage('https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=500&auto=format&fit=crop', 'Calças', this)" class="preset-img-btn opacity-75 hover:opacity-100 rounded-xl overflow-hidden aspect-square relative shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=200&auto=format&fit=crop" class="w-full h-full object-cover">
+                                <span class="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[10px] py-0.5 text-center font-semibold">Calça</span>
+                            </button>
+                        </div>
+                        <input type="hidden" id="prodImage" value="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=500&auto=format&fit=crop">
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <button type="submit" id="btn-submit-form" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs py-3 rounded-xl shadow-md transition flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> Publicar Peça Agora
+                        </button>
+                        <button type="button" id="btn-cancel-edit" onclick="cancelarEdicao()" class="hidden bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs py-3 px-4 rounded-xl transition">
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="admin-secao-config" class="hidden space-y-4">
+            <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+                <div class="border-b border-slate-100 pb-4 mb-4">
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-purple-600 bg-purple-50 px-2.5 py-0.5 rounded-md">Identidade e Dados</span>
+                    <h2 class="text-base md:text-lg font-extrabold text-slate-900 mt-1">Configurações da Loja</h2>
+                    <p class="text-xs text-slate-500">Atualize as informações que aparecem para os clientes na página da sua loja.</p>
+                </div>
+
+                <form onsubmit="salvarConfigLoja(event)" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Nome da Loja *</label>
+                            <input type="text" id="cfgNome" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-blue-600">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Bairro em Blumenau *</label>
+                            <select id="cfgBairro" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-blue-600">
+                                <option value="Água Verde">Água Verde</option>
+                                <option value="Badenfurt">Badenfurt</option>
+                                <option value="Boa Vista">Boa Vista</option>
+                                <option value="Bom Retiro">Bom Retiro</option>
+                                <option value="Centro">Centro</option>
+                                <option value="Da Glória">Da Glória</option>
+                                <option value="Do Salto">Do Salto</option>
+                                <option value="Escola Agrícola">Escola Agrícola</option>
+                                <option value="Fidélis">Fidélis</option>
+                                <option value="Fortaleza">Fortaleza</option>
+                                <option value="Fortaleza Alta">Fortaleza Alta</option>
+                                <option value="Garcia">Garcia</option>
+                                <option value="Itoupava Central">Itoupava Central</option>
+                                <option value="Itoupava Norte">Itoupava Norte</option>
+                                <option value="Itoupava Seca">Itoupava Seca</option>
+                                <option value="Itoupavazinha">Itoupavazinha</option>
+                                <option value="Jardim Blumenau">Jardim Blumenau</option>
+                                <option value="Nova Esperança">Nova Esperança</option>
+                                <option value="Passo Manso">Passo Manso</option>
+                                <option value="Ponta Aguda">Ponta Aguda</option>
+                                <option value="Progresso">Progresso</option>
+                                <option value="Ribeirão Fresco">Ribeirão Fresco</option>
+                                <option value="Salto do Norte">Salto do Norte</option>
+                                <option value="Salto Weissbach">Salto Weissbach</option>
+                                <option value="Testo Salto">Testo Salto</option>
+                                <option value="Tribess">Tribess</option>
+                                <option value="Valparaíso">Valparaíso</option>
+                                <option value="Velha">Velha</option>
+                                <option value="Velha Central">Velha Central</option>
+                                <option value="Velha Grande">Velha Grande</option>
+                                <option value="Victor Konder">Victor Konder</option>
+                                <option value="Vila Formosa">Vila Formosa</option>
+                                <option value="Vila Itoupava">Vila Itoupava</option>
+                                <option value="Vila Nova">Vila Nova</option>
+                                <option value="Vorstadt">Vorstadt</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">WhatsApp de Vendas (ex: 5547999999999) *</label>
+                            <input type="text" id="cfgWhats" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-blue-600">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Instagram (@) *</label>
+                            <input type="text" id="cfgInsta" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-blue-600">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Endereço Completo (para o Mapa) *</label>
+                        <input type="text" id="cfgEndereco" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-blue-600">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Horário de Funcionamento *</label>
+                            <input type="text" id="cfgHorario" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-blue-600">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Logo da Loja (Escolha a foto ou cole o link) *</label>
+                            <input type="file" id="cfgLogoFile" accept="image/*" onchange="converterLogoArquivo(event)" class="w-full text-xs text-slate-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100 border border-slate-300 rounded-xl cursor-pointer">
+                            <input type="hidden" id="cfgLogo" required>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Descrição / Biografia da Loja *</label>
+                        <textarea id="cfgDescricao" rows="3" required class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+                    </div>
+
+                    <button type="submit" id="btn-save-cfg" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs py-3 rounded-xl shadow-md transition flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-floppy-disk"></i> Salvar Alterações na Nuvem
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main id="site-main-content" class="max-w-4xl mx-auto w-full px-2 sm:px-4 -mt-2 mb-12 flex-grow">
+
+        <div id="conteudo-vitrine">
+            <div class="bg-white rounded-2xl shadow-lg p-3 md:p-4 mb-4 border border-slate-100">
+                <div class="relative flex items-center">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 text-slate-400 text-lg"></i>
+                    <input 
+                        type="text" 
+                        id="search-input"
+                        oninput="filtrarProdutos()"
+                        placeholder="Busque por peça (ex: Moletom, Tênis, Camiseta) ou loja..."
+                        class="w-full pl-11 pr-10 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm md:text-base text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all"
+                    >
+                    <button id="clear-search" onclick="limparBusca()" class="hidden absolute right-3 text-slate-400 hover:text-slate-600 p-1">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-2 px-1 mb-2">
+                <button onclick="filtrarCategoria('todas')" class="cat-pill px-3.5 py-1.5 rounded-full border border-blue-600 bg-blue-600 text-white transition-all font-bold text-xs flex-shrink-0 shadow-sm" data-cat="todas">
+                    <i class="fa-solid fa-border-all mr-1"></i> Tudo
+                </button>
+                <button onclick="filtrarCategoria('Camisetas')" class="cat-pill px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-xs flex-shrink-0 shadow-sm" data-cat="Camisetas">
+                    Camisetas
+                </button>
+                <button onclick="filtrarCategoria('Moletons')" class="cat-pill px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-xs flex-shrink-0 shadow-sm" data-cat="Moletons">
+                    Moletons
+                </button>
+                <button onclick="filtrarCategoria('Tênis')" class="cat-pill px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-xs flex-shrink-0 shadow-sm" data-cat="Tênis">
+                    Tênis
+                </button>
+                <button onclick="filtrarCategoria('Calças')" class="cat-pill px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-xs flex-shrink-0 shadow-sm" data-cat="Calças">
+                    Calças
+                </button>
+            </div>
+
+            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 px-1 mb-5">
+                <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1 flex-shrink-0">
+                    <i class="fa-solid fa-location-dot text-emerald-500"></i> Bairro:
+                </span>
+                <button onclick="filtrarBairro('todos')" class="bairro-pill px-3 py-1.5 rounded-full border border-emerald-600 bg-emerald-600 text-white transition-all font-bold text-[11px] flex-shrink-0 shadow-sm" data-bairro="todos">
+                    Todos
+                </button>
+                <button onclick="filtrarBairro('Água Verde')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Água Verde">Água Verde</button>
+                <button onclick="filtrarBairro('Badenfurt')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Badenfurt">Badenfurt</button>
+                <button onclick="filtrarBairro('Boa Vista')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Boa Vista">Boa Vista</button>
+                <button onclick="filtrarBairro('Bom Retiro')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Bom Retiro">Bom Retiro</button>
+                <button onclick="filtrarBairro('Centro')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Centro">Centro</button>
+                <button onclick="filtrarBairro('Da Glória')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Da Glória">Da Glória</button>
+                <button onclick="filtrarBairro('Do Salto')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Do Salto">Do Salto</button>
+                <button onclick="filtrarBairro('Escola Agrícola')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Escola Agrícola">Escola Agrícola</button>
+                <button onclick="filtrarBairro('Fidélis')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Fidélis">Fidélis</button>
+                <button onclick="filtrarBairro('Fortaleza')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Fortaleza">Fortaleza</button>
+                <button onclick="filtrarBairro('Fortaleza Alta')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Fortaleza Alta">Fortaleza Alta</button>
+                <button onclick="filtrarBairro('Garcia')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Garcia">Garcia</button>
+                <button onclick="filtrarBairro('Itoupava Central')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Itoupava Central">Itoupava Central</button>
+                <button onclick="filtrarBairro('Itoupava Norte')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Itoupava Norte">Itoupava Norte</button>
+                <button onclick="filtrarBairro('Itoupava Seca')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Itoupava Seca">Itoupava Seca</button>
+                <button onclick="filtrarBairro('Itoupavazinha')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Itoupavazinha">Itoupavazinha</button>
+                <button onclick="filtrarBairro('Jardim Blumenau')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Jardim Blumenau">Jardim Blumenau</button>
+                <button onclick="filtrarBairro('Nova Esperança')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Nova Esperança">Nova Esperança</button>
+                <button onclick="filtrarBairro('Passo Manso')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Passo Manso">Passo Manso</button>
+                <button onclick="filtrarBairro('Ponta Aguda')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Ponta Aguda">Ponta Aguda</button>
+                <button onclick="filtrarBairro('Progresso')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Progresso">Progresso</button>
+                <button onclick="filtrarBairro('Ribeirão Fresco')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Ribeirão Fresco">Ribeirão Fresco</button>
+                <button onclick="filtrarBairro('Salto do Norte')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Salto do Norte">Salto do Norte</button>
+                <button onclick="filtrarBairro('Salto Weissbach')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Salto Weissbach">Salto Weissbach</button>
+                <button onclick="filtrarBairro('Testo Salto')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Testo Salto">Testo Salto</button>
+                <button onclick="filtrarBairro('Tribess')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Tribess">Tribess</button>
+                <button onclick="filtrarBairro('Valparaíso')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Valparaíso">Valparaíso</button>
+                <button onclick="filtrarBairro('Velha')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Velha">Velha</button>
+                <button onclick="filtrarBairro('Velha Central')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Velha Central">Velha Central</button>
+                <button onclick="filtrarBairro('Velha Grande')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Velha Grande">Velha Grande</button>
+                <button onclick="filtrarBairro('Victor Konder')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Victor Konder">Victor Konder</button>
+                <button onclick="filtrarBairro('Vila Formosa')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Vila Formosa">Vila Formosa</button>
+                <button onclick="filtrarBairro('Vila Itoupava')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Vila Itoupava">Vila Itoupava</button>
+                <button onclick="filtrarBairro('Vila Nova')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Vila Nova">Vila Nova</button>
+                <button onclick="filtrarBairro('Vorstadt')" class="bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm" data-bairro="Vorstadt">Vorstadt</button>
+            </div>
+
+            <div class="mb-6">
+                <div class="flex items-center justify-between mb-3 px-1">
+                    <h2 class="text-xs uppercase tracking-wider font-extrabold text-slate-500 flex items-center gap-1.5">
+                        <i class="fa-solid fa-store text-blue-500"></i> Lojas Parceiras em Destaque
+                    </h2>
+                    <span class="text-[11px] text-slate-400">Toque para ver a loja</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5" id="container-lojas-destaque"></div>
+                
+                <div class="mt-4">
+                    <div onclick="abrirModalClube()" class="card-transition bg-gradient-to-r from-emerald-600 to-teal-700 text-white rounded-2xl p-4 shadow-sm hover:shadow-md cursor-pointer border border-emerald-500/30">
+                        <div class="flex items-center justify-between gap-3 mb-2">
+                            <div class="flex items-center gap-3 min-w-0">
+                                <div class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-base shrink-0 shadow-inner">
+                                    <i class="fa-solid fa-crown text-amber-300"></i>
+                                </div>
+                                <h3 class="font-extrabold text-sm sm:text-base text-white">Tem uma loja em Blumenau?</h3>
+                            </div>
+                            <div class="bg-white text-emerald-800 font-bold text-xs px-3 py-2 rounded-xl shrink-0 shadow-sm flex items-center gap-1">
+                                <span>Ver Plano</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </div>
+                        </div>
+                        <p class="text-xs text-emerald-100 pl-1">Conheça o Clube Acha e comece a vender direto pelo WhatsApp.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between gap-2 mb-3 px-1 mt-4">
+                <h2 class="text-xs uppercase tracking-wider font-extrabold text-slate-500" id="resultados-count">Carregando peças...</h2>
+                
+                <div class="flex items-center gap-1.5">
+                    <label for="sort-select" class="text-[11px] font-semibold text-slate-400 hidden sm:inline">Ordenar:</label>
+                    <select id="sort-select" onchange="filtrarProdutos()" class="bg-white border border-slate-200 text-slate-700 text-[11px] font-bold rounded-lg px-2.5 py-1.5 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 cursor-pointer">
+                        <option value="recentes">Mais Recentes</option>
+                        <option value="menor-preco">Menor Preço</option>
+                        <option value="maior-preco">Maior Preço</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="lista-produtos" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4"></div>
+        </div>
+
+        <!-- ABA FAVORITOS -->
+        <div id="conteudo-favoritos" class="hidden space-y-4">
+            <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm">
+                <h2 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                    <i class="fa-solid fa-heart text-blue-500"></i> Suas Peças Favoritadas
+                </h2>
+                <p class="text-xs text-slate-500 mt-0.5">Aqui ficam guardadas as roupas e calçados que você marcou com o coração para conferir depois.</p>
+            </div>
+            <div id="lista-favoritos" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4"></div>
+        </div>
+
+        <!-- PÁGINA INDIVIDUAL DA LOJA -->
+        <div id="conteudo-loja-perfil" class="hidden space-y-4">
+            <div>
+                <button onclick="mudarAbaPublica('vitrine')" class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-blue-600 bg-white border border-slate-200 px-3.5 py-2 rounded-xl shadow-sm transition">
+                    <i class="fa-solid fa-arrow-left"></i> Voltar para a Vitrine Geral
+                </button>
+            </div>
+
+            <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="h-28 sm:h-36 bg-gradient-to-r from-slate-900 via-zinc-800 to-slate-900 relative">
+                    <span class="absolute top-3 right-3 bg-black/40 backdrop-blur-md text-white text-[11px] font-semibold px-3 py-1 rounded-full flex items-center gap-1">
+                        <i class="fa-solid fa-circle-check text-emerald-400"></i> Loja Verificada
+                    </span>
+                </div>
+
+                <div class="px-5 pb-5 relative">
+                    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 -mt-10 sm:-mt-12 mb-4">
+                        <div class="flex items-end gap-3.5">
+                            <img id="bio-logo" src="https://i.imgur.com/pSSEhWE.jpeg" alt="Logo" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover border-4 border-white shadow-md bg-white">
+                            <div class="pb-1">
+                                <h2 id="bio-nome" class="text-lg sm:text-xl font-extrabold text-slate-900 leading-tight">Nome da Loja</h2>
+                                <p id="bio-instagram" class="text-xs font-semibold text-blue-600">@instagram</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <button onclick="copiarLinkLoja()" class="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold px-3.5 py-2.5 rounded-xl transition">
+                                <i class="fa-regular fa-copy"></i> Compartilhar Loja
+                            </button>
+                            <a id="bio-btn-whats" href="#" target="_blank" class="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-sm transition">
+                                <i class="fa-brands fa-whatsapp text-base"></i> Chamar no Whats
+                            </a>
+                        </div>
+                    </div>
+
+                    <p id="bio-descricao" class="text-xs sm:text-sm text-slate-600 mb-3 leading-relaxed"></p>
+
+                    <div class="flex flex-wrap items-center justify-between gap-2 text-[11px] font-semibold text-slate-600 pt-1">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="bg-slate-100 px-2.5 py-1 rounded-lg flex items-center gap-1">
+                                <i class="fa-solid fa-location-dot text-blue-600"></i> <span id="bio-endereco">Endereço</span>
+                            </span>
+                            <span class="bg-slate-100 px-2.5 py-1 rounded-lg flex items-center gap-1">
+                                <i class="fa-regular fa-clock text-blue-600"></i> <span id="bio-horario">Horário</span>
+                            </span>
+                        </div>
+                        <a id="bio-btn-maps" href="#" target="_blank" class="bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition border border-blue-200">
+                            <i class="fa-solid fa-map-location-dot text-blue-600"></i> Abrir no Google Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="flex items-center justify-between mb-3 px-1">
+                    <h2 class="text-base font-extrabold text-slate-900">Catálogo da Loja</h2>
+                    <span id="bio-contador-pecas" class="text-xs font-bold text-slate-500 bg-slate-200/70 px-2.5 py-1 rounded-full">0 peças</span>
+                </div>
+                <div id="lista-produtos-loja" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- RODAPÉ LONGO COM SUPORTE E TERMOS -->
+    <footer class="bg-slate-900 text-slate-400 py-10 px-4 text-center text-xs border-t border-slate-800">
+        <div class="max-w-4xl mx-auto space-y-4">
+            <p class="text-slate-300 font-medium"><strong>Acha Blumenau</strong> © 2026 - O guia definitivo de lojas e moda da cidade.</p>
+            <p class="text-slate-500 text-[11px] max-w-lg mx-auto leading-relaxed">
+                Este diretório tem o compromisso de conectar moradores e visitantes aos melhores estabelecimentos locais. Todas as informações de horário e contato são fornecidas e atualizadas para facilitar a comunicação direta via WhatsApp.
+            </p>
+            <div class="flex items-center justify-center gap-4 text-slate-400 font-medium flex-wrap pt-2 border-t border-slate-800/80">
+                <button onclick="abrirModalTermos()" class="hover:text-white transition-colors">Termos de Uso</button>
+                <span>•</span>
+                <button onclick="abrirModalPrivacidade()" class="hover:text-white transition-colors">Política de Privacidade</button>
+                <span>•</span>
+                <a href="https://www.instagram.com/achablumenau" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-1">
+                    <i class="fa-brands fa-instagram"></i> Instagram
+                </a>
+                <span>•</span>
+                <a href="mailto:contato.achablumenau@gmail.com" class="hover:text-white transition-colors">Suporte por E-mail</a>
+                <span>•</span>
+                <a href="https://wa.me/554797735889?text=Olá!%20Preciso%20de%20suporte%20no%20Acha%20Blumenau." target="_blank" class="hover:text-white transition-colors">WhatsApp de Suporte</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL DE TERMOS DE USO -->
+    <div id="modal-termos" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl w-full max-w-lg max-h-[85vh] overflow-y-auto shadow-2xl relative p-6 text-left text-slate-700">
+            <button onclick="fecharModalTermos()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+            <h3 class="text-lg font-extrabold text-slate-900 mb-3"><i class="fa-solid fa-file-contract text-blue-600 mr-2"></i> Termos de Uso</h3>
+            <div class="space-y-3 text-xs leading-relaxed text-slate-600">
+                <p>Bem-vindo ao <strong>Acha Blumenau</strong>. Ao utilizar nossa plataforma de diretório de moda e lojas, você concorda com os presentes termos.</p>
+                <p><strong>1. Natureza da Plataforma:</strong> O Acha Blumenau atua exclusivamente como um diretório digital que conecta clientes a lojistas locais em Blumenau-SC, direcionando as conversas e transações para o WhatsApp oficial de cada loja parceira.</p>
+                <p><strong>2. Responsabilidade pelas Ofertas:</strong> Preços, tamanhos, disponibilidade de estoque e entregas são de inteira responsabilidade das lojas cadastradas.</p>
+                <p><strong>3. Conduta:</strong> É proibido o uso da plataforma para fins ilícitos ou envio de mensagens falsas aos lojistas através dos botões de contato.</p>
+            </div>
+            <button onclick="fecharModalTermos()" class="mt-5 w-full bg-slate-900 text-white font-bold py-2.5 rounded-xl text-xs">Entendido</button>
+        </div>
+    </div>
+
+    <!-- MODAL DE POLÍTICA DE PRIVACIDADE -->
+    <div id="modal-privacidade" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl w-full max-w-lg max-h-[85vh] overflow-y-auto shadow-2xl relative p-6 text-left text-slate-700">
+            <button onclick="fecharModalPrivacidade()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+            <h3 class="text-lg font-extrabold text-slate-900 mb-3"><i class="fa-solid fa-shield-halved text-emerald-600 mr-2"></i> Política de Privacidade</h3>
+            <div class="space-y-3 text-xs leading-relaxed text-slate-600">
+                <p>O <strong>Acha Blumenau</strong> respeita a sua privacidade e a proteção dos seus dados pessoais.</p>
+                <p><strong>1. Dados Salvos Localmente:</strong> Salvamos apenas as suas peças favoritas no armazenamento local do seu navegador (localStorage) para que sua lista de desejos não se perca ao fechar a página.</p>
+                <p><strong>2. Contato Direto:</strong> Quando você clica para falar no WhatsApp da loja, a comunicação ocorre diretamente no aplicativo de mensagens, sem armazenamento de dados sensíveis em nossos servidores centrais de navegação pública.</p>
+                <p><strong>3. Segurança:</strong> Utilizamos protocolos seguros de nuvem (Firebase) para a autenticação dos lojistas parceiros.</p>
+            </div>
+            <button onclick="fecharModalPrivacidade()" class="mt-5 w-full bg-slate-900 text-white font-bold py-2.5 rounded-xl text-xs">Fechar</button>
+        </div>
+    </div>
+
+    <!-- FIREBASE MODULE & APPLICATION LOGIC -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc, getDocs, doc, getDoc, setDoc, updateDoc, deleteDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDqM8-J5u79IEHJLvSWGgGZ66ihq-1IcT8",
+            authDomain: "acha-modas.firebaseapp.com",
+            projectId: "acha-modas",
+            storageBucket: "acha-modas.firebasestorage.app",
+            messagingSenderId: "549464228393",
+            appId: "1:549464228393:web:8b939f6996de28c7469238",
+            measurementId: "G-SL6T7T56FS"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let lojasData = [];
+        let produtosData = [];
+        let categoriaAtiva = 'todas';
+        let bairroAtivo = 'todos';
+        let lojaAtualId = '';
+        let usuarioLogado = null;
+        let produtoAtualModal = null;
+        let favoritosIds = JSON.parse(localStorage.getItem('acha_bnu_favoritos') || '[]');
+
+        async function sincronizarBancoDeDados() {
+            try {
+                const lojasSnap = await getDocs(collection(db, "stores"));
+                lojasData = [];
+                lojasSnap.forEach((docSnap) => {
+                    lojasData.push({ id: docSnap.id, ...docSnap.data() });
+                });
+
+                const prodSnap = await getDocs(collection(db, "products"));
+                produtosData = [];
+                prodSnap.forEach((docSnap) => {
+                    produtosData.push({ id: docSnap.id, ...docSnap.data() });
+                });
+
+                const idsValidosNoBanco = produtosData.map(p => p.id);
+                favoritosIds = favoritosIds.filter(id => idsValidosNoBanco.includes(id));
+                localStorage.setItem('acha_bnu_favoritos', JSON.stringify(favoritosIds));
+
+                const urlParams = new URLSearchParams(window.location.search);
+                const lojaUrl = urlParams.get('loja');
+                if (lojaUrl && lojasData.some(l => l.id === lojaUrl)) {
+                    lojaAtualId = lojaUrl;
+                } else if (!lojaAtualId && lojasData.length > 0) {
+                    lojaAtualId = lojasData[0].id;
+                }
+
+                carregarLojasDestaque();
+                filtrarProdutos();
+                carregarPerfilLojaBio();
+                atualizarContadorFavoritos();
+
+                if (usuarioLogado) {
+                    renderAdminList();
+                }
+            } catch (error) {
+                console.error("Erro ao ler Firestore:", error);
+                showToast("Erro ao conectar com o banco de dados.");
+            }
+        }
+
+        onAuthStateChanged(auth, async (user) => {
+            usuarioLogado = user;
+            if (user) {
+                await garantirDocumentoDaLoja(user);
+            }
+        });
+
+        async function garantirDocumentoDaLoja(user) {
+            const storeRef = doc(db, "stores", user.uid);
+            const storeSnap = await getDoc(storeRef);
+
+            if (!storeSnap.exists()) {
+                const novaLoja = {
+                    nome: user.email.split('@')[0].toUpperCase(),
+                    bairro: "Centro",
+                    endereco: "Blumenau - SC",
+                    horario: "Seg a Sáb: 09:00 - 18:00",
+                    whatsapp: "5547999999999",
+                    instagram: "@minhaloja",
+                    descricao: "Bem-vindo ao nosso catálogo oficial no Acha Blumenau!",
+                    logo: "https://i.imgur.com/pSSEhWE.jpeg",
+                    email: user.email
+                };
+                await setDoc(storeRef, novaLoja);
+                await sincronizarBancoDeDados();
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            await sincronizarBancoDeDados();
+            const urlParams = new URLSearchParams(window.location.search);
+            const lojaUrl = urlParams.get('loja');
+            if (lojaUrl && lojasData.some(l => l.id === lojaUrl)) {
+                abrirLojaPerfil(lojaUrl);
+            }
+        });
+
+        window.abrirMenuLateral = () => {
+            document.getElementById('menu-lateral').classList.remove('-translate-x-full');
+            document.getElementById('overlay-menu').classList.remove('hidden');
+        };
+
+        window.fecharMenuLateral = () => {
+            document.getElementById('menu-lateral').classList.add('-translate-x-full');
+            document.getElementById('overlay-menu').classList.add('hidden');
+        };
+
+        window.selecionarCategoriaMenu = (cat) => {
+            fecharMenuLateral();
+            mudarAbaPublica('vitrine');
+            filtrarCategoria(cat);
+        };
+
+        // FUNÇÕES DOS MODAIS DO RODAPÉ
+        window.abrirModalTermos = () => document.getElementById('modal-termos').classList.remove('hidden');
+        window.fecharModalTermos = () => document.getElementById('modal-termos').classList.add('hidden');
+
+        window.abrirModalPrivacidade = () => document.getElementById('modal-privacidade').classList.remove('hidden');
+        window.fecharModalPrivacidade = () => document.getElementById('modal-privacidade').classList.add('hidden');
+
+        window.abrirModalClube = () => document.getElementById('modal-clube-acha').classList.remove('hidden');
+        window.fecharModalClube = () => document.getElementById('modal-clube-acha').classList.add('hidden');
+
+        window.irParaLoginLojista = () => {
+            document.getElementById('site-header').classList.add('hidden');
+            document.getElementById('site-main-content').classList.add('hidden');
+            document.getElementById('tela-painel-lojista').classList.add('hidden');
+            
+            if (usuarioLogado) {
+                abrirPainelAutenticado();
+            } else {
+                document.getElementById('tela-login-lojista').classList.remove('hidden');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        window.voltarParaSitePublico = () => {
+            document.getElementById('tela-login-lojista').classList.add('hidden');
+            document.getElementById('tela-painel-lojista').classList.add('hidden');
+            document.getElementById('site-header').classList.remove('hidden');
+            document.getElementById('site-main-content').classList.remove('hidden');
+            sincronizarBancoDeDados();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        window.realizarLoginLojista = async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim();
+            const senha = document.getElementById('loginSenha').value;
+            const btn = document.getElementById('btn-login-submit');
+
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Verificando...`;
+
+            try {
+                const cred = await signInWithEmailAndPassword(auth, email, senha);
+                usuarioLogado = cred.user;
+                await garantirDocumentoDaLoja(usuarioLogado);
+                await sincronizarBancoDeDados();
+                
+                document.getElementById('tela-login-lojista').classList.add('hidden');
+                abrirPainelAutenticado();
+                showToast("Login realizado com sucesso! Bem-vindo ao painel.");
+            } catch (error) {
+                console.error(error);
+                showToast("E-mail ou senha incorretos.");
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `<i class="fa-solid fa-right-to-bracket"></i> Acessar Painel da Loja`;
+            }
+        };
+
+        function abrirPainelAutenticado() {
+            document.getElementById('tela-painel-lojista').classList.remove('hidden');
+            carregarPainelLojistaLogado();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.sairDoPainelLojista = async () => {
+            await signOut(auth);
+            usuarioLogado = null;
+            voltarParaSitePublico();
+            showToast("Você saiu do painel lojista.");
+        };
+
+        function carregarPainelLojistaLogado() {
+            if (!usuarioLogado) return;
+            const loja = lojasData.find(l => l.id === usuarioLogado.uid);
+            if (!loja) return;
+
+            document.getElementById('admin-loja-logo').src = loja.logo;
+            document.getElementById('admin-loja-nome').innerText = loja.nome;
+            
+            document.getElementById('cfgNome').value = loja.nome || '';
+            document.getElementById('cfgBairro').value = loja.bairro || 'Centro';
+            document.getElementById('cfgWhats').value = loja.whatsapp || '';
+            document.getElementById('cfgInsta').value = loja.instagram || '';
+            document.getElementById('cfgEndereco').value = loja.endereco || '';
+            document.getElementById('cfgHorario').value = loja.horario || '';
+            document.getElementById('cfgLogo').value = loja.logo || '';
+            document.getElementById('cfgDescricao').value = loja.descricao || '';
+
+            renderAdminList();
+            cancelarEdicao();
+            mudarAbaAdmin('produtos');
+        }
+
+        window.copiarLinkMinhaLoja = () => {
+            if (!usuarioLogado) return;
+            const link = `${window.location.origin}${window.location.pathname}?loja=${usuarioLogado.uid}`;
+            navigator.clipboard.writeText(link);
+            showToast("Link exclusivo da sua loja copiado! Cole na Bio do Instagram.");
+        };
+
+        window.converterLogoArquivo = (event) => {
+            const file = event.target.files[0];
+            if (!file) return;
+            if (file.size > 1024 * 1024) {
+                showToast("A imagem é muito grande. Escolha uma foto menor (até 1MB).");
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function(uploadevento) {
+                document.getElementById('cfgLogo').value = uploadevento.target.result;
+                showToast("Foto da logo carregada com sucesso! Clique em Salvar.");
+            };
+            reader.readAsDataURL(file);
+        };
+
+        window.converterProdutoArquivo = (event) => {
+            const file = event.target.files[0];
+            if (!file) return;
+            if (file.size > 1024 * 1024) {
+                showToast("A foto é muito grande. Escolha uma imagem menor (até 1MB).");
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function(uploadevento) {
+                document.getElementById('prodImage').value = uploadevento.target.result;
+                document.getElementById('prodImageUrlInput').value = "";
+                showToast("Foto da peça carregada com sucesso!");
+            };
+            reader.readAsDataURL(file);
+        };
+
+        window.mudarAbaAdmin = (aba) => {
+            const btnProd = document.getElementById('admin-tab-produtos');
+            const btnConfig = document.getElementById('admin-tab-config');
+            const secProd = document.getElementById('admin-secao-produtos');
+            const secConfig = document.getElementById('admin-secao-config');
+
+            if (aba === 'produtos') {
+                btnProd.className = "bg-blue-600 text-white font-bold px-4 py-2 rounded-xl text-xs shadow-sm transition flex items-center gap-1.5";
+                btnConfig.className = "bg-white hover:bg-slate-100 text-slate-700 font-bold px-4 py-2 rounded-xl text-xs border border-slate-200 transition flex items-center gap-1.5";
+                secProd.classList.remove('hidden');
+                secConfig.classList.add('hidden');
+            } else {
+                btnConfig.className = "bg-purple-600 text-white font-bold px-4 py-2 rounded-xl text-xs shadow-sm transition flex items-center gap-1.5";
+                btnProd.className = "bg-white hover:bg-slate-100 text-slate-700 font-bold px-4 py-2 rounded-xl text-xs border border-slate-200 transition flex items-center gap-1.5";
+                secConfig.classList.remove('hidden');
+                secProd.classList.add('hidden');
+            }
+        };
+
+        window.salvarConfigLoja = async (e) => {
+            e.preventDefault();
+            if (!usuarioLogado) return;
+            const btn = document.getElementById('btn-save-cfg');
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Salvando...`;
+
+            try {
+                const dadosAtualizados = {
+                    nome: document.getElementById('cfgNome').value,
+                    bairro: document.getElementById('cfgBairro').value,
+                    whatsapp: document.getElementById('cfgWhats').value.replace(/\D/g, ''),
+                    instagram: document.getElementById('cfgInsta').value,
+                    endereco: document.getElementById('cfgEndereco').value,
+                    horario: document.getElementById('cfgHorario').value,
+                    logo: document.getElementById('cfgLogo').value,
+                    descricao: document.getElementById('cfgDescricao').value
+                };
+
+                await setDoc(doc(db, "stores", usuarioLogado.uid), dadosAtualizados, { merge: true });
+                await sincronizarBancoDeDados();
+
+                document.getElementById('admin-loja-logo').src = dadosAtualizados.logo;
+                document.getElementById('admin-loja-nome').innerText = dadosAtualizados.nome;
+                showToast("Configurações da loja salvas na nuvem! ✨");
+            } catch (err) {
+                console.error(err);
+                showToast("Erro ao salvar configurações.");
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `<i class="fa-solid fa-floppy-disk"></i> Salvar Alterações na Nuvem`;
+            }
+        };
+
+        window.mudarAbaPublica = (aba) => {
+            const btnVitrine = document.getElementById('tab-vitrine');
+            const btnFavoritos = document.getElementById('tab-favoritos');
+            
+            const divVitrine = document.getElementById('conteudo-vitrine');
+            const divFavoritos = document.getElementById('conteudo-favoritos');
+            const divLojaPerfil = document.getElementById('conteudo-loja-perfil');
+
+            const estiloInativo = "bg-blue-800/60 hover:bg-blue-800 text-white font-semibold px-4 py-2 rounded-xl text-xs transition-all flex items-center gap-1.5 border border-blue-400/30 shrink-0 whitespace-nowrap";
+            const estiloAtivo = "bg-white text-blue-900 font-bold px-4 py-2 rounded-xl text-xs shadow-md transition-all flex items-center gap-1.5 shrink-0 whitespace-nowrap";
+
+            [btnVitrine, btnFavoritos].forEach(b => b.className = estiloInativo);
+            divVitrine.classList.add('hidden');
+            divFavoritos.classList.add('hidden');
+            divLojaPerfil.classList.add('hidden');
+
+            if (aba === 'vitrine') {
+                btnVitrine.className = estiloAtivo;
+                divVitrine.classList.remove('hidden');
+            } else if (aba === 'favoritos') {
+                btnFavoritos.className = estiloAtivo;
+                divFavoritos.classList.remove('hidden');
+                carregarFavoritos();
+            } else if (aba === 'loja') {
+                divLojaPerfil.classList.remove('hidden');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 3000);
+        }
+
+        window.toggleFavorito = (event, pId) => {
+            event.stopPropagation();
+            const index = favoritosIds.indexOf(pId);
+            if (index > -1) {
+                favoritosIds.splice(index, 1);
+                showToast("Peça removida dos favoritos.");
+            } else {
+                favoritosIds.push(pId);
+                showToast("Peça salva nos favoritos!");
+            }
+            localStorage.setItem('acha_bnu_favoritos', JSON.stringify(favoritosIds));
+            atualizarContadorFavoritos();
+            filtrarProdutos();
+            if(!document.getElementById('conteudo-favoritos').classList.contains('hidden')) {
+                carregarFavoritos();
+            }
+        };
+
+        function atualizarContadorFavoritos() {
+            const badge = document.getElementById('fav-count-badge');
+            if (favoritosIds.length > 0) {
+                badge.innerText = favoritosIds.length;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function carregarFavoritos() {
+            const favs = produtosData.filter(p => favoritosIds.includes(p.id));
+            renderizarCardsPecas(favs, 'lista-favoritos', true);
+        }
+
+        window.selectPresetImage = (url, categoriaSugerida, btnElement) => {
+            document.getElementById('prodImage').value = url;
+            document.getElementById('prodImageUrlInput').value = url;
+            document.getElementById('prodCategory').value = categoriaSugerida;
+            document.querySelectorAll('.preset-img-btn').forEach(btn => {
+                btn.classList.remove('ring-2', 'ring-blue-600');
+                btn.classList.add('opacity-75');
+            });
+            btnElement.classList.add('ring-2', 'ring-blue-600');
+            btnElement.classList.remove('opacity-75');
+        };
+
+        function carregarLojasDestaque() {
+            const container = document.getElementById('container-lojas-destaque');
+            if (lojasData.length === 0) {
+                container.innerHTML = `<div class="col-span-3 text-center py-4 text-xs text-slate-400">Nenhuma loja parceira cadastrada ainda.</div>`;
+                return;
+            }
+            container.innerHTML = lojasData.map(loja => `
+                <div onclick="abrirLojaPerfil('${loja.id}')" class="card-transition bg-white rounded-2xl p-3 shadow-sm hover:shadow-md border border-slate-200 cursor-pointer flex items-center justify-between">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <img src="${loja.logo}" alt="${loja.nome}" class="w-12 h-12 rounded-xl object-cover border border-slate-100 shadow-sm flex-shrink-0">
+                        <div class="min-w-0">
+                            <h3 class="font-bold text-slate-800 text-sm md:text-base truncate">${loja.nome}</h3>
+                            <p class="text-xs text-slate-500 flex items-center gap-1 mt-0.5 truncate">
+                                <i class="fa-solid fa-location-dot text-slate-400"></i> ${loja.bairro}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 shrink-0">
+                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        window.abrirLojaPerfil = (lojaId) => {
+            lojaAtualId = lojaId;
+            carregarPerfilLojaBio();
+            mudarAbaPublica('loja');
+        };
+
+        function renderizarCardsPecas(pecas, containerId, mostrarLoja) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+
+            if (pecas.length === 0) {
+                container.innerHTML = `<div class="col-span-2 sm:col-span-4 text-center py-8 text-xs text-slate-500">Nenhuma peça encontrada.</div>`;
+                return;
+            }
+
+            pecas.forEach(p => {
+                const lojaRef = lojasData.find(l => l.id === p.storeId) || { nome: "Loja Parceira", bairro: "Blumenau", whatsapp: "5547999999999", endereco: "Blumenau SC" };
+                const isFav = favoritosIds.includes(p.id);
+                const card = document.createElement('div');
+                card.className = "card-transition bg-white rounded-xl p-3 shadow-sm hover:shadow-md border border-slate-200 flex flex-col justify-between cursor-pointer relative";
+                
+                card.onclick = () => abrirDetalhesProduto(p, lojaRef);
+
+                let tamanhosArray = [];
+                if (Array.isArray(p.tamanhos)) {
+                    tamanhosArray = p.tamanhos;
+                } else if (typeof p.tamanhos === 'string') {
+                    tamanhosArray = p.tamanhos.split(',').map(t => t.trim()).filter(Boolean);
+                }
+
+                card.innerHTML = `
+                    <div>
+                        <div class="w-full foto-roupa rounded-lg overflow-hidden bg-slate-100 mb-2.5 relative">
+                            <img src="${p.foto}" alt="${p.nome}" class="w-full h-full object-cover">
+                            <span class="absolute top-2 left-2 bg-black/60 backdrop-blur-sm text-white text-[9px] font-bold px-2 py-0.5 rounded">
+                                ${p.categoria}
+                            </span>
+                            <button onclick="toggleFavorito(event, '${p.id}')" class="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center text-slate-700 hover:scale-110 transition shadow">
+                                <i class="fa-${isFav ? 'solid text-red-500' : 'regular text-slate-600'} fa-heart text-sm"></i>
+                            </button>
+                        </div>
+                        <h3 class="font-bold text-slate-800 text-xs sm:text-sm leading-tight line-clamp-1">${p.nome}</h3>
+                        <p class="text-emerald-600 font-extrabold text-sm sm:text-base mt-1">R$ ${p.preco}</p>
+                        
+                        <div class="mt-1.5 inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-md border border-emerald-100">
+                            <i class="fa-solid fa-bolt text-[9px]"></i> Entrega ou Retirada
+                        </div>
+
+                        ${mostrarLoja ? `
+                            <div class="text-[11px] text-slate-500 mt-1.5 truncate hover:text-blue-600">
+                                <i class="fa-solid fa-store text-slate-400"></i> ${lojaRef.nome} (${lojaRef.bairro})
+                            </div>
+                        ` : ''}
+                        <div class="flex gap-1 mt-2 flex-wrap">
+                            ${tamanhosArray.map(t => `<span class="bg-slate-100 border border-slate-200 text-[10px] font-bold text-slate-700 px-2 py-0.5 rounded">${t}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-100">
+                        <span class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2 px-1 rounded-lg text-xs flex items-center justify-center gap-1.5 transition-all">
+                            <i class="fa-solid fa-eye"></i> Ver Detalhes
+                        </span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        async function abrirDetalhesProduto(p, loja) {
+            produtoAtualModal = p;
+            
+            try {
+                await updateDoc(doc(db, "products", p.id), { views: increment(1) });
+            } catch (e) {}
+
+            document.getElementById('modal-img').src = p.foto;
+            document.getElementById('modal-cat').innerText = p.categoria;
+            document.getElementById('modal-loja-nome').innerText = loja.nome || "Loja Parceira";
+            document.getElementById('modal-bairro').innerText = loja.bairro || "Blumenau";
+            document.getElementById('modal-nome').innerText = p.nome;
+            document.getElementById('modal-preco').innerText = `R$ ${p.preco}`;
+
+            let tamanhosArray = [];
+            if (Array.isArray(p.tamanhos)) {
+                tamanhosArray = p.tamanhos;
+            } else if (typeof p.tamanhos === 'string') {
+                tamanhosArray = p.tamanhos.split(',').map(t => t.trim()).filter(Boolean);
+            }
+
+            const tamContainer = document.getElementById('modal-tamanhos');
+            tamContainer.innerHTML = tamanhosArray.map(t => `<span class="bg-slate-100 border border-slate-200 text-xs font-bold text-slate-800 px-3 py-1 rounded-lg">${t}</span>`).join('');
+
+            const whatsNum = loja.whatsapp || "5547999999999";
+            const msgWhats = `Olá! Vi a peça *${p.nome}* (R$ ${p.preco}) no Acha Blumenau e gostaria de comprar.`;
+            document.getElementById('modal-btn-whats').href = `https://wa.me/${whatsNum}?text=${encodeURIComponent(msgWhats)}`;
+
+            const enderecoLoja = loja.endereco || "Blumenau SC";
+            document.getElementById('modal-btn-maps').href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(enderecoLoja + " Blumenau SC")}`;
+
+            document.getElementById('modal-produto').classList.remove('hidden');
+        }
+
+        window.registrarCliqueWhatsModal = async () => {
+            if (!produtoAtualModal) return;
+            try {
+                await updateDoc(doc(db, "products", produtoAtualModal.id), { whats: increment(1) });
+            } catch (e) {}
+        };
+
+        window.fecharModalProduto = () => document.getElementById('modal-produto').classList.add('hidden');
+
+        window.compartilharProdutoAtual = () => {
+            if (!produtoAtualModal) return;
+            const texto = `Olha que peça incrível encontrei no Acha Blumenau: *${produtoAtualModal.nome}* por R$ ${produtoAtualModal.preco}! Confira no site.`;
+            if (navigator.share) {
+                navigator.share({ title: produtoAtualModal.nome, text: texto, url: window.location.href }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(`${texto} - ${window.location.href}`);
+                showToast("Link da peça copiado para a área de transferência!");
+            }
+        };
+
+        function parsePreco(precoStr) {
+            if (!precoStr) return 0;
+            return parseFloat(precoStr.toString().replace(/\./g, '').replace(',', '.')) || 0;
+        }
+
+        window.filtrarProdutos = () => {
+            const termo = document.getElementById('search-input').value.toLowerCase().trim();
+            const clearBtn = document.getElementById('clear-search');
+            if (termo.length > 0) clearBtn.classList.remove('hidden');
+            else clearBtn.classList.add('hidden');
+
+            let filtradas = produtosData.filter(p => {
+                const loja = lojasData.find(l => l.id === p.storeId) || { nome: '', bairro: '' };
+                const atendeCat = (categoriaAtiva === 'todas') || (p.categoria === categoriaAtiva);
+                const atendeBairro = (bairroAtivo === 'todos') || ((loja.bairro || '').toLowerCase() === bairroAtivo.toLowerCase());
+                const atendeTexto = p.nome.toLowerCase().includes(termo) || (loja.nome || '').toLowerCase().includes(termo) || (loja.bairro || '').toLowerCase().includes(termo);
+                return atendeCat && atendeBairro && atendeTexto;
+            });
+
+            const sortBy = document.getElementById('sort-select')?.value || 'recentes';
+            if (sortBy === 'menor-preco') {
+                filtradas.sort((a, b) => parsePreco(a.preco) - parsePreco(b.preco));
+            } else if (sortBy === 'maior-preco') {
+                filtradas.sort((a, b) => parsePreco(b.preco) - parsePreco(a.preco));
+            } else {
+                filtradas.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+            }
+
+            renderizarCardsPecas(filtradas, 'lista-produtos', true);
+            document.getElementById('resultados-count').innerText = `${filtradas.length} Peças Disponíveis`;
+        };
+
+        window.filtrarCategoria = (cat) => {
+            categoriaAtiva = cat;
+            document.querySelectorAll('.cat-pill').forEach(btn => {
+                if (btn.getAttribute('data-cat') === cat) {
+                    btn.className = "cat-pill px-3.5 py-1.5 rounded-full border border-blue-600 bg-blue-600 text-white transition-all font-bold text-xs flex-shrink-0 shadow-sm";
+                } else {
+                    btn.className = "cat-pill px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-xs flex-shrink-0 shadow-sm";
+                }
+            });
+            filtrarProdutos();
+        };
+
+        window.filtrarBairro = (bairro) => {
+            bairroAtivo = bairro;
+            document.querySelectorAll('.bairro-pill').forEach(btn => {
+                if (btn.getAttribute('data-bairro') === bairro) {
+                    btn.className = "bairro-pill px-3 py-1.5 rounded-full border border-emerald-600 bg-emerald-600 text-white transition-all font-bold text-[11px] flex-shrink-0 shadow-sm";
+                } else {
+                    btn.className = "bairro-pill px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-[11px] flex-shrink-0 shadow-sm";
+                }
+            });
+            filtrarProdutos();
+        };
+
+        window.limparBusca = () => {
+            document.getElementById('search-input').value = '';
+            document.getElementById('clear-search').classList.add('hidden');
+            filtrarProdutos();
+        };
+
+        function carregarPerfilLojaBio() {
+            const loja = lojasData.find(l => l.id === lojaAtualId);
+            if (!loja) return;
+
+            document.getElementById('bio-logo').src = loja.logo;
+            document.getElementById('bio-nome').innerText = loja.nome;
+            document.getElementById('bio-instagram').innerText = loja.instagram;
+            document.getElementById('bio-descricao').innerText = loja.descricao;
+            document.getElementById('bio-endereco').innerText = loja.endereco;
+            document.getElementById('bio-horario').innerText = loja.horario;
+            
+            const msgWhats = `Olá! Vim pela página da loja no Acha Blumenau e gostaria de tirar dúvidas sobre as peças.`;
+            document.getElementById('bio-btn-whats').href = `https://wa.me/${loja.whatsapp}?text=${encodeURIComponent(msgWhats)}`;
+            document.getElementById('bio-btn-maps').href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(loja.endereco + " Blumenau SC")}`;
+
+            const pecasDaLoja = produtosData.filter(p => p.storeId === loja.id);
+            renderizarCardsPecas(pecasDaLoja, 'lista-produtos-loja', false);
+            document.getElementById('bio-contador-pecas').innerText = `${pecasDaLoja.length} ${pecasDaLoja.length === 1 ? 'peça' : 'peças'}`;
+        }
+
+        window.copiarLinkLoja = () => {
+            const link = `${window.location.origin}${window.location.pathname}?loja=${lojaAtualId}`;
+            navigator.clipboard.writeText(link);
+            showToast("Link da loja copiado com sucesso!");
+        };
+
+        window.handleAddProduct = async (e) => {
+            e.preventDefault();
+            if (!usuarioLogado) return;
+
+            const btn = document.getElementById('btn-submit-form');
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Salvando na nuvem...`;
+
+            const editId = document.getElementById('editProductId').value;
+            const tamanhosTexto = document.getElementById('prodSizesInput').value.trim();
+            const tamanhos = tamanhosTexto ? tamanhosTexto.split(',').map(t => t.trim()).filter(Boolean) : ["Único"];
+
+            const nome = document.getElementById('prodName').value;
+            const preco = document.getElementById('prodPrice').value;
+            const categoria = document.getElementById('prodCategory').value;
+            const foto = document.getElementById('prodImageUrlInput').value.trim() || document.getElementById('prodImage').value;
+
+            try {
+                if (editId) {
+                    await updateDoc(doc(db, "products", editId), { nome, preco, categoria, tamanhos, foto });
+                    showToast("Peça atualizada na nuvem!");
+                    cancelarEdicao();
+                } else {
+                    await addDoc(collection(db, "products"), {
+                        storeId: usuarioLogado.uid,
+                        nome,
+                        preco,
+                        categoria,
+                        tamanhos,
+                        foto,
+                        views: 0,
+                        whats: 0,
+                        createdAt: Date.now()
+                    });
+                    document.getElementById('addProductForm').reset();
+                    document.getElementById('prodImageUrlInput').value = '';
+                    document.getElementById('prodImageFile').value = '';
+                    showToast("Peça publicada na nuvem com sucesso!");
+                }
+                await sincronizarBancoDeDados();
+            } catch (err) {
+                console.error(err);
+                showToast("Erro ao salvar peça no Firebase.");
+            } finally {
+                btn.disabled = false;
+                if (!editId) btn.innerHTML = `<i class="fa-solid fa-cloud-arrow-up"></i> Publicar Peça Agora`;
+            }
+        };
+
+        window.iniciarEdicao = (pecaId) => {
+            const peca = produtosData.find(p => p.id === pecaId);
+            if (!peca) return;
+
+            document.getElementById('editProductId').value = peca.id;
+            document.getElementById('prodName').value = peca.nome;
+            document.getElementById('prodPrice').value = peca.preco;
+            document.getElementById('prodCategory').value = peca.categoria;
+            document.getElementById('prodImage').value = peca.foto;
+            
+            if (peca.foto && peca.foto.startsWith('http')) {
+                document.getElementById('prodImageUrlInput').value = peca.foto;
+            } else {
+                document.getElementById('prodImageUrlInput').value = '';
+            }
+
+            let stringTamanhos = "";
+            if (Array.isArray(peca.tamanhos)) {
+                stringTamanhos = peca.tamanhos.join(', ');
+            } else if (typeof peca.tamanhos === 'string') {
+                stringTamanhos = peca.tamanhos;
+            }
+            document.getElementById('prodSizesInput').value = stringTamanhos;
+
+            document.getElementById('form-badge').innerText = "Editando Peça";
+            document.getElementById('form-badge').className = "text-[11px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-md";
+            document.getElementById('form-titulo').innerText = "Editar Peça do Catálogo";
+            document.getElementById('btn-submit-form').innerHTML = `<i class="fa-solid fa-floppy-disk"></i> Salvar Alterações`;
+            document.getElementById('btn-submit-form').className = "flex-1 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs py-3 rounded-xl shadow-md transition flex items-center justify-center gap-1.5";
+            document.getElementById('btn-cancel-edit').classList.remove('hidden');
+
+            window.scrollTo({ top: document.getElementById('addProductForm').offsetTop - 100, behavior: 'smooth' });
+        };
+
+        window.cancelarEdicao = () => {
+            document.getElementById('editProductId').value = '';
+            document.getElementById('addProductForm').reset();
+            document.getElementById('prodImageUrlInput').value = '';
+            document.getElementById('prodImageFile').value = '';
+            
+            document.getElementById('form-badge').innerText = "Novo Produto";
+            document.getElementById('form-badge').className = "text-[11px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-md";
+            document.getElementById('form-titulo').innerText = "Cadastrar Nova Peça no Catálogo";
+            document.getElementById('btn-submit-form').innerHTML = `<i class="fa-solid fa-cloud-arrow-up"></i> Publicar Peça Agora`;
+            document.getElementById('btn-submit-form').className = "flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs py-3 rounded-xl shadow-md transition flex items-center justify-center gap-1.5";
+            document.getElementById('btn-cancel-edit').classList.add('hidden');
+        };
+
+        window.excluirPeca = async (pecaId) => {
+            if (!confirm("Deseja realmente excluir esta peça do catálogo?")) return;
+            try {
+                await deleteDoc(doc(db, "products", pecaId));
+                await sincronizarBancoDeDados();
+                showToast("Peça removida com sucesso!");
+            } catch (err) {
+                console.error(err);
+                showToast("Erro ao excluir peça.");
+            }
+        };
+
+        function renderAdminList() {
+            const container = document.getElementById('adminProductList');
+            if (!usuarioLogado) return;
+
+            const minhasPecas = produtosData.filter(p => p.storeId === usuarioLogado.uid);
+
+            let totalViews = 0;
+            let totalWhats = 0;
+            let totalFavs = 0;
+
+            minhasPecas.forEach(p => {
+                totalViews += (p.views || 0);
+                totalWhats += (p.whats || 0);
+                if (favoritosIds.includes(p.id)) totalFavs += 1;
+            });
+
+            document.getElementById('stat-total-views').innerText = totalViews;
+            document.getElementById('stat-total-whats').innerText = totalWhats;
+            document.getElementById('stat-total-favs').innerText = totalFavs;
+
+            if (minhasPecas.length === 0) {
+                container.innerHTML = `<div class="p-4 text-center text-xs text-slate-400">Nenhuma peça cadastrada ainda. Use o formulário abaixo para publicar a primeira!</div>`;
+                return;
+            }
+
+            container.innerHTML = minhasPecas.map(p => `
+                <div class="py-3 px-2 flex items-center justify-between gap-3 hover:bg-slate-50/80 rounded-xl transition">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <img src="${p.foto}" alt="${p.nome}" class="w-12 h-12 rounded-lg object-cover border border-slate-200 flex-shrink-0 bg-slate-100">
+                        <div class="min-w-0">
+                            <h4 class="text-xs font-bold text-slate-800 truncate">${p.nome}</h4>
+                            <p class="text-[11px] text-slate-500 truncate mt-0.5">
+                                <span class="font-bold text-slate-700">R$ ${p.preco}</span> • ${p.categoria}
+                            </p>
+                            <div class="flex items-center gap-2 mt-1.5 flex-wrap">
+                                <span class="inline-flex items-center gap-1 bg-blue-50 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded-md border border-blue-100">
+                                    <i class="fa-solid fa-eye text-[9px]"></i> ${p.views || 0} views
+                                </span>
+                                <span class="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-md border border-emerald-100">
+                                    <i class="fa-brands fa-whatsapp text-[10px]"></i> ${p.whats || 0} cliques
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1 shrink-0">
+                        <button onclick="iniciarEdicao('${p.id}')" class="text-slate-400 hover:text-blue-600 p-2 rounded-lg transition" title="Editar peça">
+                            <i class="fa-regular fa-pen-to-square text-sm"></i>
+                        </button>
+                        <button onclick="excluirPeca('${p.id}')" class="text-slate-400 hover:text-red-500 p-2 rounded-lg transition" title="Excluir peça">
+                            <i class="fa-regular fa-trash-can text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>
+
