@@ -85,11 +85,11 @@
                 </div>
 
                 <button onclick="fecharMenuLateral(); irParaLoginLojista();" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 font-semibold text-sm flex items-center justify-between transition text-slate-300">
-                    <span></i> ÁREA DO LOJISTA</span>
+                    <span>ÁREA DO LOJISTA</span>
                     <i class="fa-solid fa-arrow-right text-xs text-slate-500"></i>
                 </button>
                 <button onclick="fecharMenuLateral(); abrirModalClube();" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 font-semibold text-sm flex items-center justify-between transition text-slate-300">
-                    <span></i> CADASTRAR MINHA LOJA</span>
+                    <span>CADASTRAR MINHA LOJA</span>
                     <i class="fa-solid fa-arrow-right text-xs text-slate-500"></i>
                 </button>
             </div>
@@ -157,10 +157,10 @@
                     <div>
                         <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700 bg-emerald-200/60 px-2.5 py-1 rounded-md">Plano Fundador Blumenau</span>
                         <div class="flex items-baseline gap-1 mt-2">
-                            <span class="text-2xl sm:text-3xl font-extrabold text-slate-900">R$ 69,90</span>
+                            <span class="text-2xl sm:text-3xl font-extrabold text-slate-900">R$ 29,90</span>
                             <span class="text-xs text-slate-500 font-semibold">/ mês (Cancele quando quiser)</span>
                         </div>
-                        <p class="text-xs text-slate-600 mt-1">Menos que o custo de um anúncio que não converte.</p>
+                        <p class="text-xs text-slate-600 mt-1">Plano ilimitado para lojistas de Blumenau.</p>
                     </div>
 
                     <a href="https://wa.me/554797735889?text=Olá!%20Quero%20entrar%20no%20Clube%20Acha%20com%20minha%20loja%20em%20Blumenau!" target="_blank" onclick="fecharModalClube()" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs py-3 px-6 rounded-xl shadow-lg transition flex items-center justify-center gap-2 shrink-0">
@@ -209,7 +209,7 @@
                 </div>
 
                 <div class="bg-slate-50 rounded-2xl p-3 border border-slate-100 text-xs text-slate-600 leading-relaxed flex items-center justify-between gap-2">
-                    <p> </strong> Peça original conferida na loja física.</p>
+                    <p>Peça original conferida na loja física.</p>
                     <a id="modal-btn-maps" href="#" target="_blank" class="bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold px-3 py-2 rounded-xl text-xs flex items-center gap-1.5 shrink-0 transition border border-blue-200">
                         <i class="fa-solid fa-map-location-dot text-blue-600"></i> Ver no Mapa
                     </a>
@@ -291,7 +291,7 @@
             <div class="mt-6 pt-4 border-t border-slate-100 text-center">
                 <p class="text-[11px] text-slate-500">Ainda não faz parte do Clube Acha?</p>
                 <button onclick="voltarParaSitePublico(); abrirModalClube();" class="text-xs font-bold text-emerald-600 hover:text-emerald-700 mt-1 inline-block">
-                    Conhecer o plano por R$ 69,90/mês →
+                    Conhecer o plano por R$ 29,90/mês →
                 </button>
             </div>
         </div>
@@ -305,6 +305,7 @@
                 <div>
                     <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded-md border border-emerald-800">Painel Nuvem Ativo</span>
                     <h2 id="admin-loja-nome" class="text-base sm:text-lg font-extrabold text-white mt-0.5">Carregando Loja...</h2>
+                    <p id="admin-status-plano" class="text-[11px] text-slate-300 mt-0.5">Plano Gratuito (Até 10 peças)</p>
                 </div>
             </div>
             <div class="flex items-center gap-2">
@@ -802,7 +803,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, collection, addDoc, getDocs, doc, getDoc, setDoc, updateDoc, deleteDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, getDocs, doc, getDoc, setDoc, updateDoc, deleteDoc, increment, query, where } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDqM8-J5u79IEHJLvSWGgGZ66ihq-1IcT8",
@@ -859,7 +860,7 @@
                 atualizarContadorFavoritos();
 
                 if (usuarioLogado) {
-                    renderAdminList();
+                    carregarPainelLojistaLogado();
                 }
             } catch (error) {
                 console.error("Erro ao ler Firestore:", error);
@@ -992,14 +993,31 @@
             showToast("Você saiu do painel lojista.");
         };
 
-        function carregarPainelLojistaLogado() {
+        async function carregarPainelLojistaLogado() {
             if (!usuarioLogado) return;
-            const loja = lojasData.find(l => l.id === usuarioLogado.uid);
+            
+            const storeRef = doc(db, "stores", usuarioLogado.uid);
+            const storeSnap = await getDoc(storeRef);
+            const loja = storeSnap.exists() ? { id: storeSnap.id, ...storeSnap.data() } : null;
+
             if (!loja) return;
 
-            document.getElementById('admin-loja-logo').src = loja.logo;
-            document.getElementById('admin-loja-nome').innerText = loja.nome;
+            document.getElementById('admin-loja-logo').src = loja.logo || "https://i.imgur.com/pSSEhWE.jpeg";
+            document.getElementById('admin-loja-nome').innerText = loja.nome || "Minha Loja";
             
+            // Verifica se o campo planoPro ou ilimitado é verdadeiro no banco
+            const temPlanoPro = loja.planoPro === true || loja.ilimitado === true;
+            const statusEl = document.getElementById('admin-status-plano');
+
+            if (temPlanoPro) {
+                statusEl.innerText = "Plano Clube Acha Pro (Ilimitado)";
+                statusEl.className = "text-[11px] text-emerald-400 font-bold mt-0.5";
+            } else {
+                const minhasPecas = produtosData.filter(p => p.storeId === usuarioLogado.uid).length;
+                statusEl.innerText = `Plano Gratuito (${minhasPecas}/10 peças cadastradas)`;
+                statusEl.className = "text-[11px] text-slate-300 mt-0.5";
+            }
+
             document.getElementById('cfgNome').value = loja.nome || '';
             document.getElementById('cfgBairro').value = loja.bairro || 'Centro';
             document.getElementById('cfgWhats').value = loja.whatsapp || '';
@@ -1095,7 +1113,7 @@
 
                 document.getElementById('admin-loja-logo').src = dadosAtualizados.logo;
                 document.getElementById('admin-loja-nome').innerText = dadosAtualizados.nome;
-                showToast("Configurações da loja salvas na nuvem! ✨");
+                showToast("Configurações da loja salvas na nuvem!");
             } catch (err) {
                 console.error(err);
                 showToast("Erro ao salvar configurações.");
@@ -1424,10 +1442,25 @@
             if (!usuarioLogado) return;
 
             const btn = document.getElementById('btn-submit-form');
+            const editId = document.getElementById('editProductId').value;
+
+            // Busca dados atualizados da loja no Firestore para verificar o plano Pro/Ilimitado
+            const storeDocRef = doc(db, "stores", usuarioLogado.uid);
+            const storeSnap = await getDoc(storeDocRef);
+            const dadosLoja = storeSnap.exists() ? storeSnap.data() : {};
+            
+            const temAcessoIlimitado = dadosLoja.planoPro === true || dadosLoja.ilimitado === true;
+            const minhasPecasAtuais = produtosData.filter(p => p.storeId === usuarioLogado.uid);
+            
+            if (!editId && !temAcessoIlimitado && minhasPecasAtuais.length >= 10) {
+                alert("Você atingiu o limite de 10 peças do Plano Gratuito! Para cadastrar mais peças de forma ilimitada, assine o Clube Acha (R$ 29,90/mês).");
+                abrirModalClube();
+                return;
+            }
+
             btn.disabled = true;
             btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Salvando na nuvem...`;
 
-            const editId = document.getElementById('editProductId').value;
             const tamanhosTexto = document.getElementById('prodSizesInput').value.trim();
             const tamanhos = tamanhosTexto ? tamanhosTexto.split(',').map(t => t.trim()).filter(Boolean) : ["Único"];
 
@@ -1586,4 +1619,3 @@
     </script>
 </body>
 </html>
-
