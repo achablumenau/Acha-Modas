@@ -63,6 +63,10 @@
                     <span>TODOS OS PRODUTOS</span>
                     <i class="fa-solid fa-arrow-right text-xs text-slate-500"></i>
                 </button>
+                <button onclick="fecharMenuLateral(); mudarAbaPublica('liquidacao');" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 font-bold text-sm flex items-center justify-between transition text-slate-300">
+                    <span class="flex items-center gap-2"></i> LIQUIDAÇÃO</span>
+                    <i class="fa-solid fa-arrow-right text-xs text-slate-500"></i>
+                </button>
                 <button onclick="selecionarCategoriaMenu('Camisetas')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 font-semibold text-sm flex items-center justify-between transition text-slate-300">
                     <span>CAMISAS & CAMISETAS</span>
                     <i class="fa-solid fa-arrow-right text-xs text-slate-500"></i>
@@ -114,53 +118,54 @@
                 </span>
                 <h2 class="text-xl sm:text-2xl font-extrabold tracking-tight">Seja Parceiro do <span class="text-emerald-400">Clube Acha</span></h2>
                 <p class="text-blue-100 text-xs sm:text-sm mt-1 max-w-md mx-auto">
-                    Coloque sua loja no guia definitivo de moda da cidade e receba clientes prontos para comprar direto no seu WhatsApp.
+                    Coloque sua loja no guia definitivo de moda da cidade e acelere suas vendas com ferramentas exclusivas.
                 </p>
             </div>
 
             <div class="p-6 sm:p-8 space-y-6">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-                    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2">
-                        <div class="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold">
-                            <i class="fa-solid fa-bolt"></i>
-                        </div>
-                        <h4 class="font-extrabold text-slate-900 text-sm">Leads Diretos no WhatsApp</h4>
-                        <p class="text-slate-600">Clientes da cidade chamam com a foto da peça e o tamanho já definidos, sem perguntas vazias.</p>
-                    </div>
+    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2">
+        <div class="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold">
+            <i class="fa-solid fa-layer-group"></i>
+        </div>
+        <h4 class="font-extrabold text-slate-900 text-sm">Catálogo 100% Ilimitado</h4>
+        <p class="text-slate-600">Adeus ao limite de 10 peças. Cadastre todo o estoque da sua loja física sem restrições.</p>
+    </div>
 
-                    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2">
-                        <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
-                            <i class="fa-solid fa-chart-line"></i>
-                        </div>
-                        <h4 class="font-extrabold text-slate-900 text-sm">Painel de Métricas Real</h4>
-                        <p class="text-slate-600">Monitore quantas visualizações seu catálogo teve e quantos cliques em compras foram gerados.</p>
-                    </div>
+    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2">
+        <div class="w-8 h-8 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold">
+            <i class="fa-solid fa-chart-line"></i>
+        </div>
+        <h4 class="font-extrabold text-slate-900 text-sm">Radar de Tendências da Cidade</h4>
+        <p class="text-slate-600">Acesse em tempo real quais categorias e bairros de Blumenau estão gerando mais buscas.</p>
+    </div>
 
-                    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2">
-                        <div class="w-8 h-8 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold">
-                            <i class="fa-solid fa-link"></i>
-                        </div>
-                        <h4 class="font-extrabold text-slate-900 text-sm">Link na Bio Exclusivo</h4>
-                        <p class="text-slate-600">Sua página própria para usar no Instagram da loja com horário, mapa e vitrine atualizada.</p>
-                    </div>
+    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2">
+        <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
+            <i class="fa-solid fa-eye"></i>
+        </div>
+        <h4 class="font-extrabold text-slate-900 text-sm">Métricas de Visualizações e Cliques</h4>
+        <p class="text-slate-600">Acompanhe quantas pessoas viram suas peças e clicaram para falar com você no WhatsApp.</p>
+    </div>
 
-                    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2">
-                        <div class="w-8 h-8 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold">
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <h4 class="font-extrabold text-slate-900 text-sm">Selo Loja Destaque Ouro</h4>
-                        <p class="text-slate-600">Prioridade de exibição nas buscas por bairro e na vitrine geral.</p>
-                    </div>
-                </div>
+    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2">
+        <div class="w-8 h-8 rounded-xl bg-red-100 text-red-700 flex items-center justify-center font-bold">
+            <i class="fa-solid fa-fire"></i>
+        </div>
+        <h4 class="font-extrabold text-slate-900 text-sm">Liquidação</h4>
+        <p class="text-slate-600">Destaque suas ofertas com o selo de queima de estoque.</p>
+    </div>
+</div>
+
 
                 <div class="bg-gradient-to-br from-emerald-50 to-teal-50 border-2 border-emerald-500/40 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div>
-                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700 bg-emerald-200/60 px-2.5 py-1 rounded-md">Plano Fundador Blumenau</span>
+                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700 bg-emerald-200/60 px-2.5 py-1 rounded-md">Plano Clube Acha</span>
                         <div class="flex items-baseline gap-1 mt-2">
                             <span class="text-2xl sm:text-3xl font-extrabold text-slate-900">R$ 29,90</span>
-                            <span class="text-xs text-slate-500 font-semibold">/ mês (Cancele quando quiser)</span>
+                            <span class="text-xs text-slate-500 font-semibold">/ mês</span>
                         </div>
-                        <p class="text-xs text-slate-600 mt-1">Plano ilimitado para lojistas de Blumenau.</p>
+                        <p class="text-xs text-slate-600 mt-1">Plano ilimitado completo para lojistas de Blumenau.</p>
                     </div>
 
                     <a href="https://wa.me/554797735889?text=Olá!%20Quero%20entrar%20no%20Clube%20Acha%20com%20minha%20loja%20em%20Blumenau!" target="_blank" onclick="fecharModalClube()" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs py-3 px-6 rounded-xl shadow-lg transition flex items-center justify-center gap-2 shrink-0">
@@ -190,7 +195,12 @@
                         </button>
                     </div>
                     <h3 id="modal-nome" class="text-base sm:text-lg font-extrabold text-slate-900 leading-snug">Nome da Peça</h3>
-                    <p id="modal-preco" class="text-xl font-extrabold text-emerald-600 mt-1">R$ 0,00</p>
+                    
+                    <!-- PREÇOS NO MODAL -->
+                    <div class="flex items-baseline gap-2 mt-1">
+                        <p id="modal-preco" class="text-xl font-extrabold text-emerald-600">R$ 0,00</p>
+                        <span id="modal-preco-antigo" class="text-sm font-bold text-slate-400 line-through hidden">R$ 0,00</span>
+                    </div>
                 </div>
 
                 <div>
@@ -248,9 +258,12 @@
         </div>
 
         <!-- ABAS PRINCIPAIS -->
-        <div class="max-w-4xl mx-auto mt-5 flex items-center justify-center gap-2 py-1 px-1">
+        <div class="max-w-4xl mx-auto mt-5 flex items-center justify-center gap-2 py-1 px-1 overflow-x-auto no-scrollbar">
             <button onclick="mudarAbaPublica('vitrine')" id="tab-vitrine" class="bg-white text-blue-900 font-bold px-4 py-2 rounded-xl text-xs shadow-md transition-all flex items-center gap-1.5 shrink-0 whitespace-nowrap">
                 <i class="fa-solid fa-store"></i> Vitrine
+            </button>
+            <button onclick="mudarAbaPublica('liquidacao')" id="tab-liquidacao" class="bg-blue-800/60 hover:bg-blue-800 text-white font-bold px-4 py-2 rounded-xl text-xs transition-all flex items-center gap-1.5 border border-blue-400/30 shrink-0 whitespace-nowrap">
+                <i class="fa-solid fa-fire text-white-300"></i> Liquidação
             </button>
             <button onclick="mudarAbaPublica('favoritos')" id="tab-favoritos" class="bg-blue-800/60 hover:bg-blue-800 text-white font-semibold px-4 py-2 rounded-xl text-xs transition-all flex items-center gap-1.5 border border-blue-400/30 shrink-0 whitespace-nowrap">
                 <i class="fa-solid fa-heart"></i> Favoritos <span id="fav-count-badge" class="bg-red-500 text-white text-[10px] px-1.5 py-0.2 rounded-full ml-0.5 hidden">0</span>
@@ -328,12 +341,15 @@
         </div>
 
         <div id="admin-secao-produtos" class="space-y-4">
+            <!-- PAINEL DE TENDÊNCIAS E SUGESTÃO DE PREÇOS (EXCLUSIVO PRO) -->
+            <div id="container-radar-tendencias"></div>
+
             <div class="grid grid-cols-3 gap-2 sm:gap-4">
                 <div class="bg-white rounded-2xl border border-slate-200 p-3 sm:p-4 shadow-sm flex flex-col items-center text-center justify-between">
                     <div class="flex items-center justify-center gap-1.5 text-blue-600 text-[11px] sm:text-xs font-bold mb-1 w-full">
                         <i class="fa-solid fa-eye shrink-0"></i> <span class="truncate">Visualizações</span>
                     </div>
-                    <p id="stat-total-views" class="text-xl sm:text-2xl font-extrabold text-slate-900 my-1">0</p>
+                    <div id="stat-total-views" class="text-xl sm:text-2xl font-extrabold text-slate-900 my-1">0</div>
                     <span class="text-[9px] sm:text-[10px] text-slate-400 leading-tight">Aberturas de detalhes</span>
                 </div>
                 
@@ -341,7 +357,7 @@
                     <div class="flex items-center justify-center gap-1.5 text-emerald-600 text-[11px] sm:text-xs font-bold mb-1 w-full">
                         <i class="fa-brands fa-whatsapp shrink-0"></i> <span class="truncate">Cliques Whats</span>
                     </div>
-                    <p id="stat-total-whats" class="text-xl sm:text-2xl font-extrabold text-slate-900 my-1">0</p>
+                    <div id="stat-total-whats" class="text-xl sm:text-2xl font-extrabold text-slate-900 my-1">0</div>
                     <span class="text-[9px] sm:text-[10px] text-slate-400 leading-tight">Leads interessados</span>
                 </div>
 
@@ -349,7 +365,7 @@
                     <div class="flex items-center justify-center gap-1.5 text-red-500 text-[11px] sm:text-xs font-bold mb-1 w-full">
                         <i class="fa-solid fa-heart shrink-0"></i> <span class="truncate">Favoritadas</span>
                     </div>
-                    <p id="stat-total-favs" class="text-xl sm:text-2xl font-extrabold text-slate-900 my-1">0</p>
+                    <div id="stat-total-favs" class="text-xl sm:text-2xl font-extrabold text-slate-900 my-1">0</div>
                     <span class="text-[9px] sm:text-[10px] text-slate-400 leading-tight">Salvas na lista</span>
                 </div>
             </div>
@@ -384,8 +400,8 @@
                             <input type="text" id="prodName" required placeholder="Ex: Conjunto Moletom Black" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-blue-600">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">Preço (R$) *</label>
-                            <input type="text" id="prodPrice" required placeholder="Ex: 199,90" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-blue-600">
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Preço Atual / Oferta (R$) *</label>
+                            <input type="text" id="prodPrice" required placeholder="Ex: 99,90" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-blue-600">
                         </div>
                     </div>
 
@@ -403,6 +419,20 @@
                             <label class="block text-xs font-bold text-slate-700 mb-1">Tamanhos Disponíveis *</label>
                             <input type="text" id="prodSizesInput" required placeholder="Ex: P, M, G ou 38, 39, 40" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-blue-600">
                             <span class="text-[10px] text-slate-400 mt-1 block">Separe os tamanhos ou numerações por vírgula.</span>
+                        </div>
+                    </div>
+
+                    <!-- CAIXINHA DE SELEÇÃO EXCLUSIVA PARA LOJISTAS PRO -->
+                    <div id="container-checkbox-liquidacao" class="hidden bg-red-50 border border-red-200 rounded-2xl p-3.5 space-y-3">
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" id="prodLiquidacaoCheck" class="w-4 h-4 text-red-600 rounded border-red-300 focus:ring-red-500 cursor-pointer">
+                            <label for="prodLiquidacaoCheck" class="text-xs font-bold text-red-900 cursor-pointer select-none">
+                                🔥 Destacar esta peça na Liquidação Relâmpago
+                            </label>
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-red-800 mb-1">Preço Antigo / Original (R$) (Opcional - ex: 199,90)</label>
+                            <input type="text" id="prodOldPrice" placeholder="Ex: 199,90" class="w-full rounded-xl border border-red-200 bg-white px-3 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-red-500">
                         </div>
                     </div>
 
@@ -545,7 +575,27 @@
     <!-- CONTEÚDO PRINCIPAL -->
     <main id="site-main-content" class="max-w-4xl mx-auto w-full px-2 sm:px-4 -mt-2 mb-12 flex-grow">
 
+        <!-- ABA DA VITRINE GERAL -->
         <div id="conteudo-vitrine">
+            
+            <!-- BANNER DE ACESSO À LIQUIDAÇÃO VIP (MANTÉM A HOME LIMPA) -->
+            <div onclick="mudarAbaPublica('liquidacao')" class="card-transition bg-gradient-to-r from-red-600 via-rose-600 to-orange-600 rounded-2xl p-4 text-white shadow-md mb-5 cursor-pointer relative overflow-hidden flex items-center justify-between">
+                <div class="absolute right-0 top-0 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
+                <div class="flex items-center gap-3.5 relative z-10 min-w-0">
+                    <div class="w-11 h-11 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center text-amber-300 text-lg shrink-0 shadow-inner">
+                        <i class="fa-solid fa-fire animate-bounce"></i>
+                    </div>
+                    <div class="min-w-0">
+                        <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider">Exclusivo</span>
+                        <h2 class="text-sm sm:text-base font-extrabold text-white truncate mt-0.5">Liquidação Relâmpago • Queima de Estoque</h2>
+                        <p class="text-xs text-red-100 truncate">Toque para ver todas as ofertas especiais das lojas parceiras</p>
+                    </div>
+                </div>
+                <div class="bg-white text-red-600 font-extrabold text-xs px-3.5 py-2 rounded-xl shrink-0 shadow-sm flex items-center gap-1.5 relative z-10 ml-2">
+                    <span>Ver Ofertas</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </div>
+            </div>
+
             <div class="bg-white rounded-2xl shadow-lg p-3 md:p-4 mb-4 border border-slate-100">
                 <div class="relative flex items-center">
                     <i class="fa-solid fa-magnifying-glass absolute left-4 text-slate-400 text-lg"></i>
@@ -667,6 +717,33 @@
             <div id="lista-produtos" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4"></div>
         </div>
 
+        <!-- ABA DE LIQUIDAÇÃO RELÂMPAGO (EXCLUSIVA PRO) -->
+        <div id="conteudo-liquidacao" class="hidden space-y-4">
+            <div class="bg-gradient-to-r from-red-600 via-rose-600 to-orange-600 rounded-3xl p-6 text-white shadow-md relative overflow-hidden">
+                <div class="absolute right-0 top-0 w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
+                <div class="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div>
+                        <span class="inline-block bg-white/20 text-white text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full mb-2">Queima de Estoque</span>
+                        <h2 class="text-xl sm:text-2xl font-extrabold flex items-center gap-2">
+                            <i class="fa-solid fa-fire text-amber-300"></i> Liquidação Relâmpago
+                        </h2>
+                        <p class="text-xs sm:text-sm text-red-100 mt-1 max-w-lg">
+                            Seleção exclusiva de peças com descontos imperdíveis das lojas em Blumenau.
+                        </p>
+                    </div>
+                    <button onclick="mudarAbaPublica('vitrine')" class="bg-white text-red-600 font-bold text-xs px-4 py-2.5 rounded-xl shadow transition shrink-0">
+                        Voltar à Vitrine
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between px-1">
+                <h3 class="text-xs uppercase tracking-wider font-extrabold text-slate-500" id="liquidacao-count">Carregando ofertas...</h3>
+            </div>
+
+            <div id="lista-liquidacao-completa" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4"></div>
+        </div>
+
         <!-- ABA FAVORITOS -->
         <div id="conteudo-favoritos" class="hidden space-y-4">
             <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm">
@@ -688,9 +765,7 @@
 
             <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
                 <div class="h-28 sm:h-36 bg-gradient-to-r from-slate-900 via-zinc-800 to-slate-900 relative">
-                    <span class="absolute top-3 right-3 bg-black/40 backdrop-blur-md text-white text-[11px] font-semibold px-3 py-1 rounded-full flex items-center gap-1">
-                        <i class="fa-solid fa-circle-check text-emerald-400"></i> Loja Verificada
-                    </span>
+                    <div id="bio-badge-container" class="absolute top-3 right-3"></div>
                 </div>
 
                 <div class="px-5 pb-5 relative">
@@ -742,7 +817,7 @@
 
     </main>
 
-    <!-- RODAPÉ LONGO COM SUPORTE E TERMOS -->
+    <!-- RODAPÉ -->
     <footer class="bg-slate-900 text-slate-400 py-10 px-4 text-center text-xs border-t border-slate-800">
         <div class="max-w-4xl mx-auto space-y-4">
             <p class="text-slate-300 font-medium"><strong>Acha Blumenau</strong> © 2026 - O guia definitivo de lojas e moda da cidade.</p>
@@ -858,6 +933,7 @@
                 filtrarProdutos();
                 carregarPerfilLojaBio();
                 atualizarContadorFavoritos();
+                carregarCatalogoLiquidacao();
 
                 if (usuarioLogado) {
                     carregarPainelLojistaLogado();
@@ -866,6 +942,20 @@
                 console.error("Erro ao ler Firestore:", error);
                 showToast("Erro ao conectar com o banco de dados.");
             }
+        }
+
+        function carregarCatalogoLiquidacao() {
+            const containerLista = document.getElementById('lista-liquidacao-completa');
+            const contadorEl = document.getElementById('liquidacao-count');
+            if (!containerLista || !contadorEl) return;
+            
+            const pecasLiquidation = produtosData.filter(p => {
+                const loja = lojasData.find(l => l.id === p.storeId);
+                return loja && p.emLiquidacao === true;
+            });
+
+            contadorEl.innerText = `${pecasLiquidation.length} ${pecasLiquidation.length === 1 ? 'oferta exclusiva' : 'ofertas exclusivas'} encontradas`;
+            renderizarCardsPecas(pecasLiquidation, 'lista-liquidacao-completa', true);
         }
 
         onAuthStateChanged(auth, async (user) => {
@@ -921,7 +1011,6 @@
             filtrarCategoria(cat);
         };
 
-        // FUNÇÕES DOS MODAIS DO RODAPÉ
         window.abrirModalTermos = () => document.getElementById('modal-termos').classList.remove('hidden');
         window.fecharModalTermos = () => document.getElementById('modal-termos').classList.add('hidden');
 
@@ -1005,17 +1094,104 @@
             document.getElementById('admin-loja-logo').src = loja.logo || "https://i.imgur.com/pSSEhWE.jpeg";
             document.getElementById('admin-loja-nome').innerText = loja.nome || "Minha Loja";
             
-            // Verifica se o campo planoPro ou ilimitado é verdadeiro no banco
             const temPlanoPro = loja.planoPro === true || loja.ilimitado === true;
             const statusEl = document.getElementById('admin-status-plano');
 
+            const containerCheckboxLiq = document.getElementById('container-checkbox-liquidacao');
+            const containerRadarTendencias = document.getElementById('container-radar-tendencias');
+
             if (temPlanoPro) {
-                statusEl.innerText = "Plano Clube Acha Pro (Ilimitado)";
+                statusEl.innerText = "Plano Clube Acha (Ilimitado)";
                 statusEl.className = "text-[11px] text-emerald-400 font-bold mt-0.5";
+                if (containerCheckboxLiq) containerCheckboxLiq.classList.remove('hidden');
+                
+                // RENDERIZA TENDÊNCIAS PARA QUEM É PRO
+                containerRadarTendencias.innerHTML = `
+                    <div class="bg-gradient-to-br from-indigo-900 to-slate-900 text-white rounded-2xl p-5 shadow-sm space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded-md border border-emerald-800">Radar Acha Blumenau</span>
+                            <i class="fa-solid fa-chart-line text-emerald-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-sm sm:text-base font-extrabold text-white">Tendências e Sugestões na Cidade</h3>
+                            <p class="text-xs text-slate-300 mt-0.5">Baseado nas buscas dos moradores de Blumenau esta semana:</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs">
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/10">
+                                <span class="text-slate-400 text-[10px] block font-semibold">Categoria Mais Buscada</span>
+                                <strong class="text-emerald-400 text-sm block mt-0.5"><i class="fa-solid fa-shirt mr-1"></i> Moletons & Jaquetas</strong>
+                                <span class="text-[10px] text-slate-300 mt-1 block">Preço médio ideal: R$ 149,90 - R$ 220,00</span>
+                            </div>
+
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/10">
+                                <span class="text-slate-400 text-[10px] block font-semibold">Bairro com Mais Acessos</span>
+                                <strong class="text-blue-300 text-sm block mt-0.5"><i class="fa-solid fa-location-dot mr-1"></i> Centro & Garcia</strong>
+                                <span class="text-[10px] text-slate-300 mt-1 block">Alta intenção de retirada em loja física.</span>
+                            </div>
+
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/10">
+                                <span class="text-slate-400 text-[10px] block font-semibold">Dica de Giro de Estoque</span>
+                                <strong class="text-amber-300 text-sm block mt-0.5"><i class="fa-solid fa-fire mr-1"></i> Promoção Relâmpago</strong>
+                                <span class="text-[10px] text-slate-300 mt-1 block">Use a tag de liquidação para acelerar vendas.</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
             } else {
                 const minhasPecas = produtosData.filter(p => p.storeId === usuarioLogado.uid).length;
                 statusEl.innerText = `Plano Gratuito (${minhasPecas}/10 peças cadastradas)`;
                 statusEl.className = "text-[11px] text-slate-300 mt-0.5";
+                if (containerCheckboxLiq) containerCheckboxLiq.classList.add('hidden');
+                
+                // BLOQUEIA TENDÊNCIAS PARA QUEM É GRÁTIS
+                containerRadarTendencias.innerHTML = `
+                    <div class="bg-gradient-to-br from-slate-900 to-indigo-950 text-white rounded-2xl p-5 shadow-sm space-y-3 relative overflow-hidden border border-slate-800">
+                        <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-[2px] flex flex-col items-center justify-center text-center p-4 z-10">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-base shadow-md mb-2">
+                                <i class="fa-solid fa-crown"></i>
+                            </div>
+                            <h4 class="font-extrabold text-sm sm:text-base text-white">Radar de Tendências e Sugestões</h4>
+                            <p class="text-xs text-slate-300 max-w-sm mt-1 mb-3">Descubra em tempo real quais categorias e bairros de Blumenau estão gerando mais intenção de compra.</p>
+                            <button onclick="abrirModalClube()" class="bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-xs py-2.5 px-5 rounded-xl shadow-lg transition flex items-center gap-2">
+                                <i class="fa-solid fa-crown"></i> Desbloquear com o Plano Pro (R$ 29,90/mês)
+                            </button>
+                        </div>
+                        <div class="opacity-30 filter blur-xs pointer-events-none select-none">
+                            <div class="flex items-center justify-between">
+                                <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded-md">Radar Acha Blumenau</span>
+                            </div>
+                            <h3 class="text-sm sm:text-base font-extrabold text-white mt-1">Tendências e Sugestões na Cidade</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs">
+                                <div class="bg-white/10 rounded-xl p-3"><span>Exemplo de Categoria</span></div>
+                                <div class="bg-white/10 rounded-xl p-3"><span>Exemplo de Bairro</span></div>
+                                <div class="bg-white/10 rounded-xl p-3"><span>Exemplo de Giro</span></div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            const totalViewsEl = document.getElementById('stat-total-views');
+            const totalWhatsEl = document.getElementById('stat-total-whats');
+            const totalFavsEl = document.getElementById('stat-total-favs');
+
+            if (temPlanoPro) {
+                const minhasPecas = produtosData.filter(p => p.storeId === usuarioLogado.uid);
+                let tViews = 0, tWhats = 0, tFavs = 0;
+                minhasPecas.forEach(p => {
+                    tViews += (p.views || 0);
+                    tWhats += (p.whats || 0);
+                    if (favoritosIds.includes(p.id)) tFavs += 1;
+                });
+                totalViewsEl.innerHTML = tViews;
+                totalWhatsEl.innerHTML = tWhats;
+                totalFavsEl.innerHTML = tFavs;
+            } else {
+                const bloqueioHTML = `<button onclick="abrirModalClube()" class="text-[10px] bg-amber-500 hover:bg-amber-600 text-white font-bold px-2.5 py-1.5 rounded-lg transition shadow-sm inline-flex items-center gap-1"><i class="fa-solid fa-crown"></i> Pro</button>`;
+                totalViewsEl.innerHTML = bloqueioHTML;
+                totalWhatsEl.innerHTML = bloqueioHTML;
+                totalFavsEl.innerHTML = bloqueioHTML;
             }
 
             document.getElementById('cfgNome').value = loja.nome || '';
@@ -1125,23 +1301,35 @@
 
         window.mudarAbaPublica = (aba) => {
             const btnVitrine = document.getElementById('tab-vitrine');
+            const btnLiquidacao = document.getElementById('tab-liquidacao');
             const btnFavoritos = document.getElementById('tab-favoritos');
             
             const divVitrine = document.getElementById('conteudo-vitrine');
+            const divLiquidacao = document.getElementById('conteudo-liquidacao');
             const divFavoritos = document.getElementById('conteudo-favoritos');
             const divLojaPerfil = document.getElementById('conteudo-loja-perfil');
 
             const estiloInativo = "bg-blue-800/60 hover:bg-blue-800 text-white font-semibold px-4 py-2 rounded-xl text-xs transition-all flex items-center gap-1.5 border border-blue-400/30 shrink-0 whitespace-nowrap";
+            const estiloInativoLiq = "bg-red-600/80 hover:bg-red-600 text-white font-bold px-4 py-2 rounded-xl text-xs shadow-md transition-all flex items-center gap-1.5 border border-red-400/30 shrink-0 whitespace-nowrap";
             const estiloAtivo = "bg-white text-blue-900 font-bold px-4 py-2 rounded-xl text-xs shadow-md transition-all flex items-center gap-1.5 shrink-0 whitespace-nowrap";
+            const estiloAtivoLiq = "bg-white text-red-700 font-bold px-4 py-2 rounded-xl text-xs shadow-lg transition-all flex items-center gap-1.5 shrink-0 whitespace-nowrap border-2 border-red-500";
 
-            [btnVitrine, btnFavoritos].forEach(b => b.className = estiloInativo);
+            btnVitrine.className = estiloInativo;
+            btnLiquidacao.className = estiloInativoLiq;
+            btnFavoritos.className = estiloInativo;
+
             divVitrine.classList.add('hidden');
+            divLiquidacao.classList.add('hidden');
             divFavoritos.classList.add('hidden');
             divLojaPerfil.classList.add('hidden');
 
             if (aba === 'vitrine') {
                 btnVitrine.className = estiloAtivo;
                 divVitrine.classList.remove('hidden');
+            } else if (aba === 'liquidacao') {
+                btnLiquidacao.className = estiloAtivoLiq;
+                divLiquidacao.classList.remove('hidden');
+                carregarCatalogoLiquidacao();
             } else if (aba === 'favoritos') {
                 btnFavoritos.className = estiloAtivo;
                 divFavoritos.classList.remove('hidden');
@@ -1172,6 +1360,7 @@
             localStorage.setItem('acha_bnu_favoritos', JSON.stringify(favoritosIds));
             atualizarContadorFavoritos();
             filtrarProdutos();
+            carregarCatalogoLiquidacao();
             if(!document.getElementById('conteudo-favoritos').classList.contains('hidden')) {
                 carregarFavoritos();
             }
@@ -1265,12 +1454,17 @@
                             <span class="absolute top-2 left-2 bg-black/60 backdrop-blur-sm text-white text-[9px] font-bold px-2 py-0.5 rounded">
                                 ${p.categoria}
                             </span>
+                            ${p.emLiquidacao ? `<span class="absolute top-2 left-20 bg-red-600 text-white text-[9px] font-extrabold px-2 py-0.5 rounded flex items-center gap-1"><i class="fa-solid fa-fire"></i> Liquidação</span>` : ''}
                             <button onclick="toggleFavorito(event, '${p.id}')" class="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center text-slate-700 hover:scale-110 transition shadow">
                                 <i class="fa-${isFav ? 'solid text-red-500' : 'regular text-slate-600'} fa-heart text-sm"></i>
                             </button>
                         </div>
                         <h3 class="font-bold text-slate-800 text-xs sm:text-sm leading-tight line-clamp-1">${p.nome}</h3>
-                        <p class="text-emerald-600 font-extrabold text-sm sm:text-base mt-1">R$ ${p.preco}</p>
+                        
+                        <div class="flex items-baseline gap-1.5 mt-1">
+                            <p class="text-emerald-600 font-extrabold text-sm sm:text-base">R$ ${p.preco}</p>
+                            ${p.precoAntigo ? `<span class="text-[11px] font-bold text-slate-400 line-through">R$ ${p.precoAntigo}</span>` : ''}
+                        </div>
                         
                         <div class="mt-1.5 inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-md border border-emerald-100">
                             <i class="fa-solid fa-bolt text-[9px]"></i> Entrega ou Retirada
@@ -1308,6 +1502,14 @@
             document.getElementById('modal-bairro').innerText = loja.bairro || "Blumenau";
             document.getElementById('modal-nome').innerText = p.nome;
             document.getElementById('modal-preco').innerText = `R$ ${p.preco}`;
+
+            const precoAntigoEl = document.getElementById('modal-preco-antigo');
+            if (p.precoAntigo) {
+                precoAntigoEl.innerText = `R$ ${p.precoAntigo}`;
+                precoAntigoEl.classList.remove('hidden');
+            } else {
+                precoAntigoEl.classList.add('hidden');
+            }
 
             let tamanhosArray = [];
             if (Array.isArray(p.tamanhos)) {
@@ -1374,7 +1576,17 @@
             } else if (sortBy === 'maior-preco') {
                 filtradas.sort((a, b) => parsePreco(b.preco) - parsePreco(a.preco));
             } else {
-                filtradas.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+                filtradas.sort((a, b) => {
+                    const lojaA = lojasData.find(l => l.id === a.storeId) || {};
+                    const lojaB = lojasData.find(l => l.id === b.storeId) || {};
+                    const isProA = (lojaA.planoPro === true || lojaA.ilimitado === true) ? 1 : 0;
+                    const isProB = (lojaB.planoPro === true || lojaB.ilimitado === true) ? 1 : 0;
+                    
+                    if (isProB !== isProA) {
+                        return isProB - isProA;
+                    }
+                    return (b.createdAt || 0) - (a.createdAt || 0);
+                });
             }
 
             renderizarCardsPecas(filtradas, 'lista-produtos', true);
@@ -1422,6 +1634,19 @@
             document.getElementById('bio-endereco').innerText = loja.endereco;
             document.getElementById('bio-horario').innerText = loja.horario;
             
+            const badgeContainer = document.getElementById('bio-badge-container');
+            const temPro = loja.planoPro === true || loja.ilimitado === true;
+
+            if (temPro) {
+                badgeContainer.innerHTML = `
+                    <span class="bg-black/40 backdrop-blur-md text-white text-[11px] font-semibold px-3 py-1 rounded-full flex items-center gap-1">
+                        <i class="fa-solid fa-circle-check text-emerald-400"></i> Loja Verificada
+                    </span>
+                `;
+            } else {
+                badgeContainer.innerHTML = ``;
+            }
+
             const msgWhats = `Olá! Vim pela página da loja no Acha Blumenau e gostaria de tirar dúvidas sobre as peças.`;
             document.getElementById('bio-btn-whats').href = `https://wa.me/${loja.whatsapp}?text=${encodeURIComponent(msgWhats)}`;
             document.getElementById('bio-btn-maps').href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(loja.endereco + " Blumenau SC")}`;
@@ -1444,7 +1669,6 @@
             const btn = document.getElementById('btn-submit-form');
             const editId = document.getElementById('editProductId').value;
 
-            // Busca dados atualizados da loja no Firestore para verificar o plano Pro/Ilimitado
             const storeDocRef = doc(db, "stores", usuarioLogado.uid);
             const storeSnap = await getDoc(storeDocRef);
             const dadosLoja = storeSnap.exists() ? storeSnap.data() : {};
@@ -1468,10 +1692,14 @@
             const preco = document.getElementById('prodPrice').value;
             const categoria = document.getElementById('prodCategory').value;
             const foto = document.getElementById('prodImageUrlInput').value.trim() || document.getElementById('prodImage').value;
+            
+            const checkboxLiq = document.getElementById('prodLiquidacaoCheck');
+            const emLiquidacao = (temAcessoIlimitado && checkboxLiq) ? checkboxLiq.checked : false;
+            const precoAntigo = (emLiquidacao) ? document.getElementById('prodOldPrice').value.trim() : "";
 
             try {
                 if (editId) {
-                    await updateDoc(doc(db, "products", editId), { nome, preco, categoria, tamanhos, foto });
+                    await updateDoc(doc(db, "products", editId), { nome, preco, precoAntigo, categoria, tamanhos, foto, emLiquidacao });
                     showToast("Peça atualizada na nuvem!");
                     cancelarEdicao();
                 } else {
@@ -1479,9 +1707,11 @@
                         storeId: usuarioLogado.uid,
                         nome,
                         preco,
+                        precoAntigo,
                         categoria,
                         tamanhos,
                         foto,
+                        emLiquidacao,
                         views: 0,
                         whats: 0,
                         createdAt: Date.now()
@@ -1489,6 +1719,7 @@
                     document.getElementById('addProductForm').reset();
                     document.getElementById('prodImageUrlInput').value = '';
                     document.getElementById('prodImageFile').value = '';
+                    document.getElementById('prodOldPrice').value = '';
                     showToast("Peça publicada na nuvem com sucesso!");
                 }
                 await sincronizarBancoDeDados();
@@ -1510,6 +1741,12 @@
             document.getElementById('prodPrice').value = peca.preco;
             document.getElementById('prodCategory').value = peca.categoria;
             document.getElementById('prodImage').value = peca.foto;
+            
+            const checkboxLiq = document.getElementById('prodLiquidacaoCheck');
+            if (checkboxLiq) checkboxLiq.checked = peca.emLiquidacao === true;
+            
+            const oldPriceInput = document.getElementById('prodOldPrice');
+            if (oldPriceInput) oldPriceInput.value = peca.precoAntigo || '';
             
             if (peca.foto && peca.foto.startsWith('http')) {
                 document.getElementById('prodImageUrlInput').value = peca.foto;
@@ -1541,6 +1778,11 @@
             document.getElementById('prodImageUrlInput').value = '';
             document.getElementById('prodImageFile').value = '';
             
+            const checkboxLiq = document.getElementById('prodLiquidacaoCheck');
+            if (checkboxLiq) checkboxLiq.checked = false;
+            const oldPriceInput = document.getElementById('prodOldPrice');
+            if (oldPriceInput) oldPriceInput.value = '';
+            
             document.getElementById('form-badge').innerText = "Novo Produto";
             document.getElementById('form-badge').className = "text-[11px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-md";
             document.getElementById('form-titulo').innerText = "Cadastrar Nova Peça no Catálogo";
@@ -1565,21 +1807,10 @@
             const container = document.getElementById('adminProductList');
             if (!usuarioLogado) return;
 
+            const lojaAtualObj = lojasData.find(l => l.id === usuarioLogado.uid) || {};
+            const temPlanoPro = lojaAtualObj.planoPro === true || lojaAtualObj.ilimitado === true;
+
             const minhasPecas = produtosData.filter(p => p.storeId === usuarioLogado.uid);
-
-            let totalViews = 0;
-            let totalWhats = 0;
-            let totalFavs = 0;
-
-            minhasPecas.forEach(p => {
-                totalViews += (p.views || 0);
-                totalWhats += (p.whats || 0);
-                if (favoritosIds.includes(p.id)) totalFavs += 1;
-            });
-
-            document.getElementById('stat-total-views').innerText = totalViews;
-            document.getElementById('stat-total-whats').innerText = totalWhats;
-            document.getElementById('stat-total-favs').innerText = totalFavs;
 
             if (minhasPecas.length === 0) {
                 container.innerHTML = `<div class="p-4 text-center text-xs text-slate-400">Nenhuma peça cadastrada ainda. Use o formulário abaixo para publicar a primeira!</div>`;
@@ -1593,15 +1824,21 @@
                         <div class="min-w-0">
                             <h4 class="text-xs font-bold text-slate-800 truncate">${p.nome}</h4>
                             <p class="text-[11px] text-slate-500 truncate mt-0.5">
-                                <span class="font-bold text-slate-700">R$ ${p.preco}</span> • ${p.categoria}
+                                <span class="font-bold text-slate-700">R$ ${p.preco}</span> ${p.precoAntigo ? `<span class="text-slate-400 line-through text-[10px]">R$ ${p.precoAntigo}</span>` : ''} • ${p.categoria} ${p.emLiquidacao ? '• <span class="text-red-600 font-bold">🔥 Em Liquidação</span>' : ''}
                             </p>
                             <div class="flex items-center gap-2 mt-1.5 flex-wrap">
-                                <span class="inline-flex items-center gap-1 bg-blue-50 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded-md border border-blue-100">
-                                    <i class="fa-solid fa-eye text-[9px]"></i> ${p.views || 0} views
-                                </span>
-                                <span class="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-md border border-emerald-100">
-                                    <i class="fa-brands fa-whatsapp text-[10px]"></i> ${p.whats || 0} cliques
-                                </span>
+                                ${temPlanoPro ? `
+                                    <span class="inline-flex items-center gap-1 bg-blue-50 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded-md border border-blue-100">
+                                        <i class="fa-solid fa-eye text-[9px]"></i> ${p.views || 0} views
+                                    </span>
+                                    <span class="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-md border border-emerald-100">
+                                        <i class="fa-brands fa-whatsapp text-[10px]"></i> ${p.whats || 0} cliques
+                                    </span>
+                                ` : `
+                                    <span onclick="abrirModalClube()" class="cursor-pointer inline-flex items-center gap-1 bg-amber-50 text-amber-700 text-[10px] font-bold px-2 py-0.5 rounded-md border border-amber-200 hover:bg-amber-100 transition">
+                                        <i class="fa-solid fa-lock text-[9px]"></i> Métricas exclusivas do Plano Pro (Clique para desbloquear)
+                                    </span>
+                                `}
                             </div>
                         </div>
                     </div>
