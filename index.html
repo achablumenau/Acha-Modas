@@ -58,29 +58,45 @@
                 </button>
             </div>
 
-            <div class="p-4 space-y-1">
+            <div class="p-4 space-y-1 overflow-y-auto">
                 <button onclick="selecionarCategoriaMenu('todas')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 font-bold text-sm flex items-center justify-between transition text-white">
                     <span>TODOS OS PRODUTOS</span>
                     <i class="fa-solid fa-arrow-right text-xs text-slate-500"></i>
                 </button>
                 <button onclick="fecharMenuLateral(); mudarAbaPublica('liquidacao');" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 font-bold text-sm flex items-center justify-between transition text-slate-300">
-                    <span class="flex items-center gap-2"></i> LIQUIDAÇÃO</span>
+                    <span>LIQUIDAÇÃO</span>
                     <i class="fa-solid fa-arrow-right text-xs text-slate-500"></i>
                 </button>
                 <button onclick="selecionarCategoriaMenu('Camisetas')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 font-semibold text-sm flex items-center justify-between transition text-slate-300">
-                    <span>CAMISAS & CAMISETAS</span>
+                    <span>CAMISETAS</span>
                     <i class="fa-solid fa-arrow-right text-xs text-slate-500"></i>
                 </button>
                 <button onclick="selecionarCategoriaMenu('Moletons')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 font-semibold text-sm flex items-center justify-between transition text-slate-300">
-                    <span>MOLETONS & JAQUETAS</span>
-                    <i class="fa-solid fa-arrow-right text-xs text-slate-500"></i>
-                </button>
-                <button onclick="selecionarCategoriaMenu('Tênis')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 font-semibold text-sm flex items-center justify-between transition text-slate-300">
-                    <span>TÊNIS & CALÇADOS</span>
+                    <span>MOLETONS</span>
                     <i class="fa-solid fa-arrow-right text-xs text-slate-500"></i>
                 </button>
                 <button onclick="selecionarCategoriaMenu('Calças')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 font-semibold text-sm flex items-center justify-between transition text-slate-300">
-                    <span>CALÇAS & BERMUDAS</span>
+                    <span>CALÇAS</span>
+                    <i class="fa-solid fa-arrow-right text-xs text-slate-500"></i>
+                </button>
+                <button onclick="selecionarCategoriaMenu('Tênis')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 font-semibold text-sm flex items-center justify-between transition text-slate-300">
+                    <span>TÊNIS</span>
+                    <i class="fa-solid fa-arrow-right text-xs text-slate-500"></i>
+                </button>
+                <button onclick="selecionarCategoriaMenu('Acessórios')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 font-semibold text-sm flex items-center justify-between transition text-slate-300">
+                    <span>ACESSÓRIOS</span>
+                    <i class="fa-solid fa-arrow-right text-xs text-slate-500"></i>
+                </button>
+                <button onclick="selecionarCategoriaMenu('Moda Feminina')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 font-semibold text-sm flex items-center justify-between transition text-slate-300">
+                    <span>MODA FEMININA</span>
+                    <i class="fa-solid fa-arrow-right text-xs text-slate-500"></i>
+                </button>
+                <button onclick="selecionarCategoriaMenu('Moda Masculina')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 font-semibold text-sm flex items-center justify-between transition text-slate-300">
+                    <span>MODA MASCULINA</span>
+                    <i class="fa-solid fa-arrow-right text-xs text-slate-500"></i>
+                </button>
+                <button onclick="selecionarCategoriaMenu('Moda Fitness')" class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-900 font-semibold text-sm flex items-center justify-between transition text-slate-300">
+                    <span>MODA FITNESS</span>
                     <i class="fa-solid fa-arrow-right text-xs text-slate-500"></i>
                 </button>
 
@@ -124,39 +140,38 @@
 
             <div class="p-6 sm:p-8 space-y-6">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2">
-        <div class="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold">
-            <i class="fa-solid fa-layer-group"></i>
-        </div>
-        <h4 class="font-extrabold text-slate-900 text-sm">Catálogo 100% Ilimitado</h4>
-        <p class="text-slate-600">Adeus ao limite de 10 peças. Cadastre todo o estoque da sua loja física sem restrições.</p>
-    </div>
+                    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2">
+                        <div class="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <h4 class="font-extrabold text-slate-900 text-sm">Catálogo 100% Ilimitado</h4>
+                        <p class="text-slate-600">Adeus ao limite de 10 peças. Cadastre todo o estoque da sua loja física sem restrições.</p>
+                    </div>
 
-    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2">
-        <div class="w-8 h-8 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold">
-            <i class="fa-solid fa-chart-line"></i>
-        </div>
-        <h4 class="font-extrabold text-slate-900 text-sm">Radar de Tendências da Cidade</h4>
-        <p class="text-slate-600">Acesse em tempo real quais categorias e bairros de Blumenau estão gerando mais buscas.</p>
-    </div>
+                    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2">
+                        <div class="w-8 h-8 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h4 class="font-extrabold text-slate-900 text-sm">Radar de Tendências da Cidade</h4>
+                        <p class="text-slate-600">Acesse em tempo real quais categorias e bairros de Blumenau estão gerando mais buscas.</p>
+                    </div>
 
-    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2">
-        <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
-            <i class="fa-solid fa-eye"></i>
-        </div>
-        <h4 class="font-extrabold text-slate-900 text-sm">Métricas de Visualizações e Cliques</h4>
-        <p class="text-slate-600">Acompanhe quantas pessoas viram suas peças e clicaram para falar com você no WhatsApp.</p>
-    </div>
+                    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2">
+                        <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
+                        <h4 class="font-extrabold text-slate-900 text-sm">Métricas de Visualizações e Cliques</h4>
+                        <p class="text-slate-600">Acompanhe quantas pessoas viram suas peças e clicaram para falar com você no WhatsApp.</p>
+                    </div>
 
-    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2">
-        <div class="w-8 h-8 rounded-xl bg-red-100 text-red-700 flex items-center justify-center font-bold">
-            <i class="fa-solid fa-fire"></i>
-        </div>
-        <h4 class="font-extrabold text-slate-900 text-sm">Liquidação</h4>
-        <p class="text-slate-600">Destaque suas ofertas com o selo de queima de estoque.</p>
-    </div>
-</div>
-
+                    <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 space-y-2">
+                        <div class="w-8 h-8 rounded-xl bg-red-100 text-red-700 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-fire"></i>
+                        </div>
+                        <h4 class="font-extrabold text-slate-900 text-sm">Liquidação</h4>
+                        <p class="text-slate-600">Destaque suas ofertas com o selo de queima de estoque.</p>
+                    </div>
+                </div>
 
                 <div class="bg-gradient-to-br from-emerald-50 to-teal-50 border-2 border-emerald-500/40 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div>
@@ -176,29 +191,26 @@
         </div>
     </div>
 
-       <!-- MODAL DE DETALHES DO PRODUTO -->
-<div id="modal-produto" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <!-- ADICIONADO max-h-[90vh] e overflow-y-auto ABAIXO -->
-    <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl relative">
-        <button onclick="fecharModalProduto()" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-black/50 hover:bg-black/70 text-white flex items-center justify-center transition">
-            <i class="fa-solid fa-xmark text-sm"></i>
-        </button>
-        <!-- REDUZIDO A ALTURA DA FOTO PARA NÃO ESTOURAR NO PC -->
-        <div class="w-full h-56 sm:h-64 bg-slate-100 relative">
-            <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
-            <span id="modal-cat" class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-md"></span>
-        </div>
-        <div class="p-5 space-y-4">
-            <div>
-                <div class="text-xs font-bold text-blue-600 mb-1 flex items-center justify-between">
-                    <span class="flex items-center gap-1"><i class="fa-solid fa-store"></i> <span id="modal-loja-nome">Loja</span> • <span id="modal-bairro" class="text-slate-500">Bairro</span></span>
-                    <button onclick="compartilharProdutoAtual()" class="text-slate-500 hover:text-blue-600 font-semibold flex items-center gap-1 text-[11px] bg-slate-100 px-2.5 py-1 rounded-lg transition">
-                        <i class="fa-solid fa-share-nodes"></i> Compartilhar
-                    </button>
-                </div>
-                <h3 id="modal-nome" class="text-base sm:text-lg font-extrabold text-slate-900 leading-snug">Nome da Peça</h3>
+    <!-- MODAL DE DETALHES DO PRODUTO -->
+    <div id="modal-produto" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl relative">
+            <button onclick="fecharModalProduto()" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-black/50 hover:bg-black/70 text-white flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+            <div class="w-full h-56 sm:h-64 bg-slate-100 relative">
+                <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
+                <span id="modal-cat" class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-md"></span>
+            </div>
+            <div class="p-5 space-y-4">
+                <div>
+                    <div class="text-xs font-bold text-blue-600 mb-1 flex items-center justify-between">
+                        <span class="flex items-center gap-1"><i class="fa-solid fa-store"></i> <span id="modal-loja-nome">Loja</span> • <span id="modal-bairro" class="text-slate-500">Bairro</span></span>
+                        <button onclick="compartilharProdutoAtual()" class="text-slate-500 hover:text-blue-600 font-semibold flex items-center gap-1 text-[11px] bg-slate-100 px-2.5 py-1 rounded-lg transition">
+                            <i class="fa-solid fa-share-nodes"></i> Compartilhar
+                        </button>
+                    </div>
+                    <h3 id="modal-nome" class="text-base sm:text-lg font-extrabold text-slate-900 leading-snug">Nome da Peça</h3>
 
-                    <!-- PREÇOS NO MODAL -->
                     <div class="flex items-baseline gap-2 mt-1">
                         <p id="modal-preco" class="text-xl font-extrabold text-emerald-600">R$ 0,00</p>
                         <span id="modal-preco-antigo" class="text-sm font-bold text-slate-400 line-through hidden">R$ 0,00</span>
@@ -265,7 +277,7 @@
                 <i class="fa-solid fa-store"></i> Vitrine
             </button>
             <button onclick="mudarAbaPublica('liquidacao')" id="tab-liquidacao" class="bg-blue-800/60 hover:bg-blue-800 text-white font-bold px-4 py-2 rounded-xl text-xs transition-all flex items-center gap-1.5 border border-blue-400/30 shrink-0 whitespace-nowrap">
-                <i class="fa-solid fa-fire text-white-300"></i> Liquidação
+                <i class="fa-solid fa-fire"></i> Liquidação
             </button>
             <button onclick="mudarAbaPublica('favoritos')" id="tab-favoritos" class="bg-blue-800/60 hover:bg-blue-800 text-white font-semibold px-4 py-2 rounded-xl text-xs transition-all flex items-center gap-1.5 border border-blue-400/30 shrink-0 whitespace-nowrap">
                 <i class="fa-solid fa-heart"></i> Favoritos <span id="fav-count-badge" class="bg-red-500 text-white text-[10px] px-1.5 py-0.2 rounded-full ml-0.5 hidden">0</span>
@@ -343,7 +355,6 @@
         </div>
 
         <div id="admin-secao-produtos" class="space-y-4">
-            <!-- PAINEL DE TENDÊNCIAS E SUGESTÃO DE PREÇOS (EXCLUSIVO PRO) -->
             <div id="container-radar-tendencias"></div>
 
             <div class="grid grid-cols-3 gap-2 sm:gap-4">
@@ -411,10 +422,14 @@
                         <div>
                             <label class="block text-xs font-bold text-slate-700 mb-1">Categoria *</label>
                             <select id="prodCategory" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-blue-600">
-                                <option value="Moletons">Moletons</option>
                                 <option value="Camisetas">Camisetas</option>
-                                <option value="Tênis">Tênis</option>
+                                <option value="Moletons">Moletons</option>
                                 <option value="Calças">Calças</option>
+                                <option value="Tênis">Tênis</option>
+                                <option value="Acessórios">Acessórios</option>
+                                <option value="Moda Feminina">Moda Feminina</option>
+                                <option value="Moda Masculina">Moda Masculina</option>
+                                <option value="Moda Fitness">Moda Fitness</option>
                             </select>
                         </div>
                         <div>
@@ -424,7 +439,6 @@
                         </div>
                     </div>
 
-                    <!-- CAIXINHA DE SELEÇÃO EXCLUSIVA PARA LOJISTAS PRO -->
                     <div id="container-checkbox-liquidacao" class="hidden bg-red-50 border border-red-200 rounded-2xl p-3.5 space-y-3">
                         <div class="flex items-center gap-3">
                             <input type="checkbox" id="prodLiquidacaoCheck" class="w-4 h-4 text-red-600 rounded border-red-300 focus:ring-red-500 cursor-pointer">
@@ -460,6 +474,22 @@
                             <button type="button" onclick="selectPresetImage('https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=500&auto=format&fit=crop', 'Calças', this)" class="preset-img-btn opacity-75 hover:opacity-100 rounded-xl overflow-hidden aspect-square relative shadow-sm">
                                 <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=200&auto=format&fit=crop" class="w-full h-full object-cover">
                                 <span class="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[10px] py-0.5 text-center font-semibold">Calça</span>
+                            </button>
+                            <button type="button" onclick="selectPresetImage('https://images.unsplash.com/photo-1770331168808-18b4ec8643f7?q=80&w=1299&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D', 'Acessórios', this)" class="preset-img-btn opacity-75 hover:opacity-100 rounded-xl overflow-hidden aspect-square relative shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1770331168808-18b4ec8643f7?q=80&w=1299&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D" class="w-full h-full object-cover">
+                                <span class="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[10px] py-0.5 text-center font-semibold">Acessório</span>
+                            </button>
+                            <button type="button" onclick="selectPresetImage('https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D', 'Moda Feminina', this)" class="preset-img-btn opacity-75 hover:opacity-100 rounded-xl overflow-hidden aspect-square relative shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D" class="w-full h-full object-cover">
+                                <span class="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[10px] py-0.5 text-center font-semibold">Moda Feminina</span>
+                            </button>
+                            <button type="button" onclick="selectPresetImage('https://images.unsplash.com/photo-1507680434567-5739c80be1ac?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D', 'Moda Masculina', this)" class="preset-img-btn opacity-75 hover:opacity-100 rounded-xl overflow-hidden aspect-square relative shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1507680434567-5739c80be1ac?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D" class="w-full h-full object-cover">
+                                <span class="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[9px] py-0.5 text-center font-semibold">Moda Masculina</span>
+                            </button>
+                            <button type="button" onclick="selectPresetImage('https://images.unsplash.com/photo-1637712181274-e3e268d248f6?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D', 'Moda Fitness', this)" class="preset-img-btn opacity-75 hover:opacity-100 rounded-xl overflow-hidden aspect-square relative shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1637712181274-e3e268d248f6?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D" class="w-full h-full object-cover">
+                                <span class="absolute bottom-0 inset-x-0 bg-black/60 text-white text-[10px] py-0.5 text-center font-semibold">Moda Fitness</span>
                             </button>
                         </div>
                         <input type="hidden" id="prodImage" value="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=500&auto=format&fit=crop">
@@ -580,7 +610,6 @@
         <!-- ABA DA VITRINE GERAL -->
         <div id="conteudo-vitrine">
             
-            <!-- BANNER DE ACESSO À LIQUIDAÇÃO VIP (MANTÉM A HOME LIMPA) -->
             <div onclick="mudarAbaPublica('liquidacao')" class="card-transition bg-gradient-to-r from-red-600 via-rose-600 to-orange-600 rounded-2xl p-4 text-white shadow-md mb-5 cursor-pointer relative overflow-hidden flex items-center justify-between">
                 <div class="absolute right-0 top-0 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
                 <div class="flex items-center gap-3.5 relative z-10 min-w-0">
@@ -618,18 +647,14 @@
                 <button onclick="filtrarCategoria('todas')" class="cat-pill px-3.5 py-1.5 rounded-full border border-blue-600 bg-blue-600 text-white transition-all font-bold text-xs flex-shrink-0 shadow-sm" data-cat="todas">
                     <i class="fa-solid fa-border-all mr-1"></i> Tudo
                 </button>
-                <button onclick="filtrarCategoria('Camisetas')" class="cat-pill px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-xs flex-shrink-0 shadow-sm" data-cat="Camisetas">
-                    Camisetas
-                </button>
-                <button onclick="filtrarCategoria('Moletons')" class="cat-pill px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-xs flex-shrink-0 shadow-sm" data-cat="Moletons">
-                    Moletons
-                </button>
-                <button onclick="filtrarCategoria('Tênis')" class="cat-pill px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-xs flex-shrink-0 shadow-sm" data-cat="Tênis">
-                    Tênis
-                </button>
-                <button onclick="filtrarCategoria('Calças')" class="cat-pill px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-xs flex-shrink-0 shadow-sm" data-cat="Calças">
-                    Calças
-                </button>
+                <button onclick="filtrarCategoria('Camisetas')" class="cat-pill px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-xs flex-shrink-0 shadow-sm" data-cat="Camisetas">Camisetas</button>
+                <button onclick="filtrarCategoria('Moletons')" class="cat-pill px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-xs flex-shrink-0 shadow-sm" data-cat="Moletons">Moletons</button>
+                <button onclick="filtrarCategoria('Calças')" class="cat-pill px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-xs flex-shrink-0 shadow-sm" data-cat="Calças">Calças</button>
+                <button onclick="filtrarCategoria('Tênis')" class="cat-pill px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-xs flex-shrink-0 shadow-sm" data-cat="Tênis">Tênis</button>
+                <button onclick="filtrarCategoria('Acessórios')" class="cat-pill px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-xs flex-shrink-0 shadow-sm" data-cat="Acessórios">Acessórios</button>
+                <button onclick="filtrarCategoria('Moda Feminina')" class="cat-pill px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-xs flex-shrink-0 shadow-sm" data-cat="Moda Feminina">Moda Feminina</button>
+                <button onclick="filtrarCategoria('Moda Masculina')" class="cat-pill px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-xs flex-shrink-0 shadow-sm" data-cat="Moda Masculina">Moda Masculina</button>
+                <button onclick="filtrarCategoria('Moda Fitness')" class="cat-pill px-3.5 py-1.5 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all font-semibold text-xs flex-shrink-0 shadow-sm" data-cat="Moda Fitness">Moda Fitness</button>
             </div>
 
             <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 px-1 mb-5">
@@ -719,7 +744,7 @@
             <div id="lista-produtos" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4"></div>
         </div>
 
-        <!-- ABA DE LIQUIDAÇÃO RELÂMPAGO (EXCLUSIVA PRO) -->
+        <!-- ABA DE LIQUIDAÇÃO RELÂMPAGO -->
         <div id="conteudo-liquidacao" class="hidden space-y-4">
             <div class="bg-gradient-to-r from-red-600 via-rose-600 to-orange-600 rounded-3xl p-6 text-white shadow-md relative overflow-hidden">
                 <div class="absolute right-0 top-0 w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
@@ -776,7 +801,7 @@
                             <img id="bio-logo" src="https://i.imgur.com/pSSEhWE.jpeg" alt="Logo" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover border-4 border-white shadow-md bg-white">
                             <div class="pb-1">
                                 <h2 id="bio-nome" class="text-lg sm:text-xl font-extrabold text-slate-900 leading-tight">Nome da Loja</h2>
-                                <p id="bio-instagram" class="text-xs font-semibold text-blue-600">@instagram</p>
+                                <div id="bio-instagram" class="text-xs font-semibold text-blue-600">@instagram</div>
                             </div>
                         </div>
 
@@ -1107,7 +1132,6 @@
                 statusEl.className = "text-[11px] text-emerald-400 font-bold mt-0.5";
                 if (containerCheckboxLiq) containerCheckboxLiq.classList.remove('hidden');
                 
-                // RENDERIZA TENDÊNCIAS PARA QUEM É PRO
                 containerRadarTendencias.innerHTML = `
                     <div class="bg-gradient-to-br from-indigo-900 to-slate-900 text-white rounded-2xl p-5 shadow-sm space-y-3">
                         <div class="flex items-center justify-between">
@@ -1146,7 +1170,6 @@
                 statusEl.className = "text-[11px] text-slate-300 mt-0.5";
                 if (containerCheckboxLiq) containerCheckboxLiq.classList.add('hidden');
                 
-                // BLOQUEIA TENDÊNCIAS PARA QUEM É GRÁTIS
                 containerRadarTendencias.innerHTML = `
                     <div class="bg-gradient-to-br from-slate-900 to-indigo-950 text-white rounded-2xl p-5 shadow-sm space-y-3 relative overflow-hidden border border-slate-800">
                         <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-[2px] flex flex-col items-center justify-center text-center p-4 z-10">
@@ -1312,32 +1335,32 @@
             const divLojaPerfil = document.getElementById('conteudo-loja-perfil');
 
             const estiloInativo = "bg-blue-800/60 hover:bg-blue-800 text-white font-semibold px-4 py-2 rounded-xl text-xs transition-all flex items-center gap-1.5 border border-blue-400/30 shrink-0 whitespace-nowrap";
-            const estiloInativoLiq = "bg-red-600/80 hover:bg-red-600 text-white font-bold px-4 py-2 rounded-xl text-xs shadow-md transition-all flex items-center gap-1.5 border border-red-400/30 shrink-0 whitespace-nowrap";
+            const estiloInativoLiq = "bg-blue-800/60 hover:bg-blue-800 text-white font-bold px-4 py-2 rounded-xl text-xs transition-all flex items-center gap-1.5 border border-blue-400/30 shrink-0 whitespace-nowrap";
             const estiloAtivo = "bg-white text-blue-900 font-bold px-4 py-2 rounded-xl text-xs shadow-md transition-all flex items-center gap-1.5 shrink-0 whitespace-nowrap";
             const estiloAtivoLiq = "bg-white text-red-700 font-bold px-4 py-2 rounded-xl text-xs shadow-lg transition-all flex items-center gap-1.5 shrink-0 whitespace-nowrap border-2 border-red-500";
 
-            btnVitrine.className = estiloInativo;
-            btnLiquidacao.className = estiloInativoLiq;
-            btnFavoritos.className = estiloInativo;
+            if (btnVitrine) btnVitrine.className = estiloInativo;
+            if (btnLiquidacao) btnLiquidacao.className = estiloInativoLiq;
+            if (btnFavoritos) btnFavoritos.className = estiloInativo;
 
-            divVitrine.classList.add('hidden');
-            divLiquidacao.classList.add('hidden');
-            divFavoritos.classList.add('hidden');
-            divLojaPerfil.classList.add('hidden');
+            if (divVitrine) divVitrine.classList.add('hidden');
+            if (divLiquidacao) divLiquidacao.classList.add('hidden');
+            if (divFavoritos) divFavoritos.classList.add('hidden');
+            if (divLojaPerfil) divLojaPerfil.classList.add('hidden');
 
             if (aba === 'vitrine') {
-                btnVitrine.className = estiloAtivo;
-                divVitrine.classList.remove('hidden');
+                if (btnVitrine) btnVitrine.className = estiloAtivo;
+                if (divVitrine) divVitrine.classList.remove('hidden');
             } else if (aba === 'liquidacao') {
-                btnLiquidacao.className = estiloAtivoLiq;
-                divLiquidacao.classList.remove('hidden');
+                if (btnLiquidacao) btnLiquidacao.className = estiloAtivoLiq;
+                if (divLiquidacao) divLiquidacao.classList.remove('hidden');
                 carregarCatalogoLiquidacao();
             } else if (aba === 'favoritos') {
-                btnFavoritos.className = estiloAtivo;
-                divFavoritos.classList.remove('hidden');
+                if (btnFavoritos) btnFavoritos.className = estiloAtivo;
+                if (divFavoritos) divFavoritos.classList.remove('hidden');
                 carregarFavoritos();
             } else if (aba === 'loja') {
-                divLojaPerfil.classList.remove('hidden');
+                if (divLojaPerfil) divLojaPerfil.classList.remove('hidden');
             }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
@@ -1631,7 +1654,15 @@
 
             document.getElementById('bio-logo').src = loja.logo;
             document.getElementById('bio-nome').innerText = loja.nome;
-            document.getElementById('bio-instagram').innerText = loja.instagram;
+            
+            const instagramHandle = (loja.instagram || '').replace('@', '').trim();
+            const instaContainer = document.getElementById('bio-instagram');
+            if (instagramHandle) {
+                instaContainer.innerHTML = `<a href="https://instagram.com/${instagramHandle}" target="_blank" rel="noopener noreferrer" class="hover:underline">@${instagramHandle}</a>`;
+            } else {
+                instaContainer.innerHTML = '';
+            }
+
             document.getElementById('bio-descricao').innerText = loja.descricao;
             document.getElementById('bio-endereco').innerText = loja.endereco;
             document.getElementById('bio-horario').innerText = loja.horario;
